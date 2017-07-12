@@ -1,4 +1,4 @@
-package main
+package gobyexample
 
 import "fmt"
 
