@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"container/list"
 )
 
 type info struct {
@@ -37,4 +38,13 @@ func main() {
 	fmt.Println("total = ", total)
 	info.result = "This is a test string"
 	fmt.Println("Another way of setting and reading values from a struct: ", info.result)
+
+	l := list.New()
+	l.PushBack(4)
+	l.PushFront(1)
+	l.PushBack(5)
+	l.PushFront(6)
+	for e := l.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value)
+	}
 }
