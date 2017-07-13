@@ -1,9 +1,9 @@
-package main
+package gobyexample
 
 import "fmt"
 import "time"
 
-func main() {
+func switchMain() {
 	i := 2
 	fmt.Print("Write ", i, " as ")
 	switch i {
@@ -15,13 +15,13 @@ func main() {
 		fmt.Println("three")
 	}
 
-	// you can use commas to separate multiple expressions 
+	// you can use commas to separate multiple expressions
 	// in the same case statement
 	switch time.Now().Weekday() {
 	case time.Saturday, time.Sunday:
 		fmt.Println("Today is a weekend")
 	default:
-		fmt.Println("Today is a weekday.", "[Today is", time.Now().Weekday(),"]")
+		fmt.Println("Today is a weekday.", "[Today is", time.Now().Weekday(), "]")
 	}
 
 	// switch without an expression is another way of expressing
@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// a type switch compares types and not values
-	// you can use this to discover the type of an 
+	// you can use this to discover the type of an
 	// interface value. In this case, the variable t
 	// will have the type corresponding to its value
 	whatAmI := func(i interface{}) {

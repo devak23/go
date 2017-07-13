@@ -1,21 +1,20 @@
-package main
+package gobyexample
 
 import "fmt"
 
-
 // There is no ternary if statement in GO
 
-func main() {
-	// parenthesis are not required 
+func ifelseMain() {
+	// parenthesis are not required
 	// for if conditions but braces are a MUST
-	if 7 % 2 == 0 {
+	if 7%2 == 0 {
 		fmt.Println("even number")
 	} else {
 		fmt.Println("odd number")
 	}
 
 	// if without an else
-	if 8 % 4 == 0 {
+	if 8%4 == 0 {
 		fmt.Println("8 is divisible by 4")
 	}
 

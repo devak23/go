@@ -1,8 +1,8 @@
-package main
+package assorted
 
 import (
-	"fmt"
 	"container/list"
+	"fmt"
 )
 
 type info struct {
@@ -13,9 +13,9 @@ func infoRepo(aNumber int) (string, error) {
 	return "This is an intro package", nil
 }
 
-func main() {
+func sampleStructMain() {
 	var introMessage string = "Hello From GoToolChain"
-	fmt.Println("Go Reports: %+v\n",introMessage)
+	fmt.Println("Go Reports: %+v\n", introMessage)
 
 	var info = info{}
 
@@ -30,9 +30,9 @@ func main() {
 	sp.result = "set a struct pointer value"
 	fmt.Println("Go reports: %+v\n", sp.result)
 
-	xs := []float64 {98, 93, 77, 82, 83.5}
+	xs := []float64{98, 93, 77, 82, 83.5}
 	total := 0.0
-	for _, v := range xs  {
+	for _, v := range xs {
 		total += v
 	}
 	fmt.Println("total = ", total)
