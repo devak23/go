@@ -2,7 +2,7 @@ package gobyexample
 
 import "fmt"
 
-func arraysMain() {
+func ArraysMain() {
 	var a [5]int
 	fmt.Println("emp: ", a)
 

@@ -3,7 +3,7 @@ package gobyexample
 import "fmt"
 import "time"
 
-func switchMain() {
+func SwitchMain() {
 	i := 2
 	fmt.Print("Write ", i, " as ")
 	switch i {

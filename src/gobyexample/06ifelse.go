@@ -4,7 +4,7 @@ import "fmt"
 
 // There is no ternary if statement in GO
 
-func ifelseMain() {
+func IfelseMain() {
 	// parenthesis are not required
 	// for if conditions but braces are a MUST
 	if 7%2 == 0 {

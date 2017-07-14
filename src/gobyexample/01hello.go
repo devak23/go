@@ -2,6 +2,6 @@ package gobyexample
 
 import "fmt"
 
-func helloMain() {
+func HelloMain() {
 	fmt.Println("Hello World")
 }

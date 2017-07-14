@@ -2,7 +2,7 @@ package gobyexample
 
 import "fmt"
 
-func variablesMain() {
+func VariablesMain() {
 	// var declares one or more variables
 	var aString = "initial"
 	fmt.Println(aString)

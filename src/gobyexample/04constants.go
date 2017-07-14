@@ -6,7 +6,7 @@ import "math"
 // const declares a constant value
 const s string = "constant"
 
-func constantsMain() {
+func ConstantsMain() {
 	fmt.Println(s)
 	const n = 500000000
 	// const expressions perform arithmetic with arbitrary precision

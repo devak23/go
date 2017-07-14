@@ -2,7 +2,7 @@ package gobyexample
 
 import "fmt"
 
-func forMain() {
+func ForMain() {
 
 	i := 1
 	for i < 3 {
