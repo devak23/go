@@ -13,7 +13,7 @@ func infoRepo(aNumber int) (string, error) {
 	return "This is an intro package", nil
 }
 
-func sampleStructMain() {
+func SampleStructMain() {
 	var introMessage string = "Hello From GoToolChain"
 	fmt.Println("Go Reports: %+v\n", introMessage)
 

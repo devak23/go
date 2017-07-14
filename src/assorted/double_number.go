@@ -4,7 +4,7 @@ package assorted
 // import the formated IO package for print statements
 import "fmt"
 
-func doubleNumberMain() {
+func DoubleNumberMain() {
 	fmt.Print("Enter a number: ")
 	var input float64
 	// use the Scanf and pass the address of the input variable

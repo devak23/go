@@ -8,7 +8,7 @@ func add(num1 int, num2 int) int {
 	return result
 }
 
-func main() {
+func FunctionsMain() {
 	// adding two numbers
 	fmt.Println("adding 4 and 5 gives", add(4, 5))
 }

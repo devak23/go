@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func inputNumberMain() {
+func InputNumberMain() {
 	// if the length of arguments to the program is
 	// not two (program name and the number), then
 	// print out a message of how to use the program and exit

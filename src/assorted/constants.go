@@ -44,7 +44,7 @@ const (
 	VIOLET
 )
 
-func constantsMain() {
+func ConstantsMain() {
 	fm.Println("This is printed using alias")
 	print("ABC")
 	println("\nTHis is on a new line")

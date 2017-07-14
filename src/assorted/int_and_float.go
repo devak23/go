@@ -6,7 +6,7 @@ import "fmt"
 // types cannot be mixed as is. they need to be converted into appropriate data
 // types before performing the operations. This is a compile time check
 
-func intAndFloatMain() {
+func IntAndFloatMain() {
 	var k float64 = 3.14159
 	var m int = 2
 	var result1 = int(k) + m
