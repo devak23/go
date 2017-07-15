@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"gobyexample"
 	"goinpractise"
-	"fmt"
 )
 
 func main() {
@@ -37,4 +37,7 @@ func main() {
 
 	fmt.Println("============ Executing goinpractise.MutlipleReturnsMain =================")
 	goinpractise.MutlipleReturnsMain()
+
+	fmt.Println("============ Executing goinpractise.ReadStatusMain =================")
+	goinpractise.ReadStatusMain()
 }

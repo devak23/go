@@ -13,8 +13,8 @@ func MultipleReturns() (string, string) {
 // MultipleReturnsWithParams accepts two string arguments and returns them
 // The example only illustrates that multiple return values can be returned
 // from the function
-func MultipleReturnsWithParams(name1 string, name2 string) (string, string) {
-	return name1, name2
+func MultipleReturnsWithParams(firstname string, lastname string) (string, string) {
+	return firstname, lastname
 }
 
 // MutlipleReturnsMain is the main function called MultipleReturnsMain so as to be
@@ -24,6 +24,6 @@ func MutlipleReturnsMain() {
 	fmt.Println(n1, n2)
 
 	// anything with an underscore is ignored
-	n3, _ := MultipleReturnsWithParams("Manik", "Soham")
+	n3, _ := MultipleReturnsWithParams("Manik", "Kulkarni")
 	fmt.Println(n3)
 }
