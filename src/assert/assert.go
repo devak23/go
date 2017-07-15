@@ -6,7 +6,7 @@ import (
 )
 
 
-func AssertEqual(t *testing.T, a interface{}, b interface{}, message string) {
+func AssertEquals(t *testing.T, a interface{}, b interface{}, message string) {
   if a == b {
     return
   }
