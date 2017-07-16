@@ -17,10 +17,9 @@ func TestReadStatusFromGoLangAtPort80(t *testing.T) {
 	assert.AssertNotNil(t, response, "")
 }
 
-//This isn't working... for some reason
-// func TestReadStatusFromApacheAtPort80(t *testing.T) {
-// 	url := "apache.org"
-// 	response := ConnectAndGet(url)
-// 	assert.AssertNotNil(t, response, "")
-// 	assert.AssertEquals(t, response, "HTTP/1.1 200 OK", "")
-// }
+func TestReadStatusFromApacheAtPort80(t *testing.T) {
+	url := "apache.org:80" //had forgotten the port earlier
+	response := ConnectAndGet(url)
+	assert.AssertNotNil(t, response, "")
+	assert.AssertEquals(t, response, "HTTP/1.1 200 OK\r\n", "")
+}
