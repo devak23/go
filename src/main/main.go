@@ -40,4 +40,13 @@ func main() {
 
 	fmt.Println("============ Executing goinpractise.ReadStatusMain =================")
 	goinpractise.ReadStatusMain()
+
+	fmt.Println("============ Executing goinpractise.ConcurrentPrintingMain =================")
+	goinpractise.ConcurrentPrintingMain()
+
+	fmt.Println("============ Executing goinpractise.UsingChannelMain =================")
+	goinpractise.UsingChannelMain()
+
+	fmt.Println("============ Executing goinpractise.HelloServerMain =================")
+	goinpractise.HelloServerMain()
 }
