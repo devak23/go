@@ -47,6 +47,9 @@ func main() {
 	fmt.Println("============ Executing goinpractise.UsingChannelMain =================")
 	goinpractise.UsingChannelMain()
 
-	fmt.Println("============ Executing goinpractise.HelloServerMain =================")
-	goinpractise.HelloServerMain()
+	fmt.Println("============ Executing goinpractise.FlagCliMain =================")
+	goinpractise.FlagCliMain()
+
+	// fmt.Println("============ Executing goinpractise.HelloServerMain =================")
+	// goinpractise.HelloServerMain()
 }
