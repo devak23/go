@@ -10,6 +10,8 @@ import (
 	"strconv"
 )
 
+// InputNumberMain accepts a numeric input from the command line arguments
+// and executes the logic. This function is invoked from main.go
 func InputNumberMain() {
 	// if the length of arguments to the program is
 	// not two (program name and the number), then
