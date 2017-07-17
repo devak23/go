@@ -56,4 +56,7 @@ func main() {
 
 	fmt.Println("================= Executing assorted.ConvertStringMain ===================")
 	assorted.ConvertStringMain()
+
+	fmt.Println("================= Executing assorted.MapDemoMain ===================")
+	assorted.MapDemoMain()
 }
