@@ -1,6 +1,7 @@
 package main
 
 import (
+	"assorted"
 	"fmt"
 	"gobyexample"
 	"goinpractise"
@@ -52,4 +53,7 @@ func main() {
 
 	// fmt.Println("============ Executing goinpractise.HelloServerMain =================")
 	// goinpractise.HelloServerMain()
+
+	fmt.Println("================= Executing assorted.ConvertStringMain ===================")
+	assorted.ConvertStringMain()
 }
