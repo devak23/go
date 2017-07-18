@@ -75,4 +75,7 @@ func main() {
 	fmt.Println("================= Executing assorted.OOMthdInheritanceMain ===================")
 	assorted.OOMthdInteritanceMain()
 
+	fmt.Println("================= Executing assorted.OOInterfaceMain ===================")
+	assorted.OOInterfaceMain()
+
 }
