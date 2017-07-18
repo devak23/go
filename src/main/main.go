@@ -78,4 +78,6 @@ func main() {
 	fmt.Println("================= Executing assorted.OOInterfaceMain ===================")
 	assorted.OOInterfaceMain()
 
+	fmt.Println("================= Executing assorted.InterfaceValueTypeMain ===================")
+	assorted.InterfaceValueTypeMain()
 }
