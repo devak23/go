@@ -66,4 +66,6 @@ func main() {
 	fmt.Println("================= Executing assorted.PassByRefMain ===================")
 	assorted.PassByRefMain()
 
+	fmt.Println("================= Executing assorted.FuncAsObjMain ===================")
+	assorted.FuncAsObjMain()
 }
