@@ -59,4 +59,11 @@ func main() {
 
 	fmt.Println("================= Executing assorted.MapDemoMain ===================")
 	assorted.MapDemoMain()
+
+	fmt.Println("================= Executing assorted.PassByValueMain ===================")
+	assorted.PassByValueMain()
+
+	fmt.Println("================= Executing assorted.PassByRefMain ===================")
+	assorted.PassByRefMain()
+
 }
