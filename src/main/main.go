@@ -72,4 +72,7 @@ func main() {
 	fmt.Println("================= Executing assorted.AreaMain ===================")
 	assorted.AreaMain()
 
+	fmt.Println("================= Executing assorted.OOMthdInheritanceMain ===================")
+	assorted.OOMthdInteritanceMain()
+
 }
