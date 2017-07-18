@@ -68,4 +68,8 @@ func main() {
 
 	fmt.Println("================= Executing assorted.FuncAsObjMain ===================")
 	assorted.FuncAsObjMain()
+
+	fmt.Println("================= Executing assorted.AreaMain ===================")
+	assorted.AreaMain()
+
 }
