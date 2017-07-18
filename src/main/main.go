@@ -80,4 +80,8 @@ func main() {
 
 	fmt.Println("================= Executing assorted.InterfaceValueTypeMain ===================")
 	assorted.InterfaceValueTypeMain()
+
+	fmt.Println("================= Executing assorted.GoRoutineMain ===================")
+	assorted.GoRoutineMain()
+
 }
