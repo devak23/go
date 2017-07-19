@@ -88,4 +88,7 @@ func main() {
 
 	fmt.Println("================= Executing assorted.BufferedChannelsMain ===================")
 	assorted.BufferedChannelsMain()
+
+	fmt.Println("================= Executing assorted.FiboMain ===================")
+	assorted.FiboMain()
 }
