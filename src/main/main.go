@@ -83,12 +83,15 @@ func main() {
 	// fmt.Println("================= Executing assorted.GoRoutineMain ===================")
 	// assorted.GoRoutineMain()
 
-	fmt.Println("================= Executing assorted.NonBufferedChannels ===================")
-	assorted.NonBufferedChannels()
+	//fmt.Println("================= Executing assorted.NonBufferedChannels ===================")
+	//assorted.NonBufferedChannels()
+	//
+	//fmt.Println("================= Executing assorted.BufferedChannelsMain ===================")
+	//assorted.BufferedChannelsMain()
+	//
+	//fmt.Println("================= Executing assorted.FiboMain ===================")
+	//assorted.FiboMain()
 
-	fmt.Println("================= Executing assorted.BufferedChannelsMain ===================")
-	assorted.BufferedChannelsMain()
-
-	fmt.Println("================= Executing assorted.FiboMain ===================")
-	assorted.FiboMain()
+	fmt.Println("========== Executing assorted.ReadingDBMain ==============")
+	assorted.ReadingDBMain()
 }
