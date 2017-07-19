@@ -84,4 +84,6 @@ func main() {
 	fmt.Println("================= Executing assorted.GoRoutineMain ===================")
 	assorted.GoRoutineMain()
 
+	fmt.Println("================= Executing assorted.AddUsingChannelMain ===================")
+	assorted.AddUsingChannelMain()
 }
