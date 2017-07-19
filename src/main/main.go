@@ -3,13 +3,13 @@ package main
 import (
 	"assorted"
 	"fmt"
-	"gobyexample"
-	"goreceipes/concurrency"
+	_ "gobyexample"
+	_ "goreceipes/concurrency"
 )
 
 func main() {
-	fmt.Println("============ Executing gobyexample.HelloMain =================")
-	gobyexample.HelloMain()
+	//fmt.Println("============ Executing gobyexample.HelloMain =================")
+	//gobyexample.HelloMain()
 	// fmt.Println("============ Executing gobyexample.ArraysMain =================")
 	// gbe.ArraysMain()
 	// fmt.Println("============ Executing gobyexample.ConstantsMain =================")
@@ -93,9 +93,12 @@ func main() {
 	//fmt.Println("================= Executing assorted.FiboMain ===================")
 	//assorted.FiboMain()
 
-	fmt.Println("========== Executing assorted.ReadingDBMain ==============")
-	assorted.ReadingDBMain()
+	//fmt.Println("========== Executing assorted.ReadingDBMain ==============")
+	//assorted.ReadingDBMain()
 
-	fmt.Println("========== Executing concurrency.WaitGroupMain ==============")
-	concurrency.WaitGroupMain()
+	//fmt.Println("========== Executing concurrency.WaitGroupMain ==============")
+	//concurrency.WaitGroupMain()
+
+	fmt.Println("========== Executing concurrency.FetchUrlsMain ==============")
+	assorted.FetchUrlsMain()
 }
