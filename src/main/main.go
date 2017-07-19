@@ -4,7 +4,6 @@ import (
 	"assorted"
 	"fmt"
 	"gobyexample"
-	"goinpractise"
 )
 
 func main() {
@@ -36,54 +35,57 @@ func main() {
 	// fmt.Println("============ Executing assorted.SampeStructMain =================")
 	// assorted.SampleStructMain()
 
-	fmt.Println("============ Executing goinpractise.MutlipleReturnsMain =================")
-	goinpractise.MutlipleReturnsMain()
-
-	fmt.Println("============ Executing goinpractise.ReadStatusMain =================")
-	goinpractise.ReadStatusMain()
-
-	fmt.Println("============ Executing goinpractise.ConcurrentPrintingMain =================")
-	goinpractise.ConcurrentPrintingMain()
-
-	fmt.Println("============ Executing goinpractise.UsingChannelMain =================")
-	goinpractise.UsingChannelMain()
-
-	fmt.Println("============ Executing goinpractise.FlagCliMain =================")
-	goinpractise.FlagCliMain()
+	// fmt.Println("============ Executing goinpractise.MutlipleReturnsMain =================")
+	// goinpractise.MutlipleReturnsMain()
+	//
+	// fmt.Println("============ Executing goinpractise.ReadStatusMain =================")
+	// goinpractise.ReadStatusMain()
+	//
+	// fmt.Println("============ Executing goinpractise.ConcurrentPrintingMain =================")
+	// goinpractise.ConcurrentPrintingMain()
+	//
+	// fmt.Println("============ Executing goinpractise.UsingChannelMain =================")
+	// goinpractise.UsingChannelMain()
+	//
+	// fmt.Println("============ Executing goinpractise.FlagCliMain =================")
+	// goinpractise.FlagCliMain()
 
 	// fmt.Println("============ Executing goinpractise.HelloServerMain =================")
 	// goinpractise.HelloServerMain()
 
-	fmt.Println("================= Executing assorted.ConvertStringMain ===================")
-	assorted.ConvertStringMain()
+	// fmt.Println("================= Executing assorted.ConvertStringMain ===================")
+	// assorted.ConvertStringMain()
+	//
+	// fmt.Println("================= Executing assorted.MapDemoMain ===================")
+	// assorted.MapDemoMain()
+	//
+	// fmt.Println("================= Executing assorted.PassByValueMain ===================")
+	// assorted.PassByValueMain()
+	//
+	// fmt.Println("================= Executing assorted.PassByRefMain ===================")
+	// assorted.PassByRefMain()
+	//
+	// fmt.Println("================= Executing assorted.FuncAsObjMain ===================")
+	// assorted.FuncAsObjMain()
+	//
+	// fmt.Println("================= Executing assorted.AreaMain ===================")
+	// assorted.AreaMain()
+	//
+	// fmt.Println("================= Executing assorted.OOMthdInheritanceMain ===================")
+	// assorted.OOMthdInteritanceMain()
+	//
+	// fmt.Println("================= Executing assorted.OOInterfaceMain ===================")
+	// assorted.OOInterfaceMain()
+	//
+	// fmt.Println("================= Executing assorted.InterfaceValueTypeMain ===================")
+	// assorted.InterfaceValueTypeMain()
+	//
+	// fmt.Println("================= Executing assorted.GoRoutineMain ===================")
+	// assorted.GoRoutineMain()
 
-	fmt.Println("================= Executing assorted.MapDemoMain ===================")
-	assorted.MapDemoMain()
+	fmt.Println("================= Executing assorted.NonBufferedChannels ===================")
+	assorted.NonBufferedChannels()
 
-	fmt.Println("================= Executing assorted.PassByValueMain ===================")
-	assorted.PassByValueMain()
-
-	fmt.Println("================= Executing assorted.PassByRefMain ===================")
-	assorted.PassByRefMain()
-
-	fmt.Println("================= Executing assorted.FuncAsObjMain ===================")
-	assorted.FuncAsObjMain()
-
-	fmt.Println("================= Executing assorted.AreaMain ===================")
-	assorted.AreaMain()
-
-	fmt.Println("================= Executing assorted.OOMthdInheritanceMain ===================")
-	assorted.OOMthdInteritanceMain()
-
-	fmt.Println("================= Executing assorted.OOInterfaceMain ===================")
-	assorted.OOInterfaceMain()
-
-	fmt.Println("================= Executing assorted.InterfaceValueTypeMain ===================")
-	assorted.InterfaceValueTypeMain()
-
-	fmt.Println("================= Executing assorted.GoRoutineMain ===================")
-	assorted.GoRoutineMain()
-
-	fmt.Println("================= Executing assorted.AddUsingChannelMain ===================")
-	assorted.AddUsingChannelMain()
+	fmt.Println("================= Executing assorted.BufferedChannelsMain ===================")
+	assorted.BufferedChannelsMain()
 }

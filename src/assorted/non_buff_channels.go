@@ -11,8 +11,8 @@ func sum(a []int, channel chan int) {
 	channel <- total // insert into the channel
 }
 
-// AddUsingChannelMain is the main function that gets invoked from main.go
-func AddUsingChannelMain() {
+// NonBufferedChannels is the main function that gets invoked from main.go
+func NonBufferedChannels() {
 	array := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 	channel := make(chan int)
 
