@@ -1,4 +1,4 @@
-package fib
+package algorithms
 
 // FibFunc exposes the function to calculate the fibonacci series
 func FibFunc() func() uint64 {
