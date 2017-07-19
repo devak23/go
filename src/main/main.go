@@ -4,6 +4,7 @@ import (
 	"assorted"
 	"fmt"
 	"gobyexample"
+	"goreceipes/concurrency"
 )
 
 func main() {
@@ -94,4 +95,7 @@ func main() {
 
 	fmt.Println("========== Executing assorted.ReadingDBMain ==============")
 	assorted.ReadingDBMain()
+
+	fmt.Println("========== Executing concurrency.WaitGroupMain ==============")
+	concurrency.WaitGroupMain()
 }
