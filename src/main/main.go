@@ -103,6 +103,9 @@ func main() {
 	//fmt.Println("========== Executing concurrency.FetchUrlsMain ==============")
 	//assorted.FetchUrlsMain()
 
-	fmt.Println("========== Executing assorted.CommunicationMain ==============")
-	assorted.CommunicationMain()
+	//fmt.Println("========== Executing assorted.CommunicationMain ==============")
+	//assorted.CommunicationMain()
+
+	fmt.Println("========== Executing assorted.DeadlockMain ==============")
+	assorted.DeadlockMain()
 }
