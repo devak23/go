@@ -1,10 +1,11 @@
 package main
 
 import (
-	"assorted"
+	_ "assorted"
 	"fmt"
 	_ "gobyexample"
 	_ "goreceipes/concurrency"
+	"assorted"
 )
 
 func main() {
@@ -99,6 +100,9 @@ func main() {
 	//fmt.Println("========== Executing concurrency.WaitGroupMain ==============")
 	//concurrency.WaitGroupMain()
 
-	fmt.Println("========== Executing concurrency.FetchUrlsMain ==============")
-	assorted.FetchUrlsMain()
+	//fmt.Println("========== Executing concurrency.FetchUrlsMain ==============")
+	//assorted.FetchUrlsMain()
+
+	fmt.Println("========== Executing assorted.CommunicationMain ==============")
+	assorted.CommunicationMain()
 }
