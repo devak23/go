@@ -5,7 +5,8 @@ import (
 	"fmt"
 	_ "gobyexample"
 	_ "goreceipes/concurrency"
-	"assorted"
+	_ "assorted"
+	"goreceipes/concurrency"
 )
 
 func main() {
@@ -106,6 +107,9 @@ func main() {
 	//fmt.Println("========== Executing assorted.CommunicationMain ==============")
 	//assorted.CommunicationMain()
 
+	//fmt.Println("========== Executing assorted.DeadlockMain ==============")
+	//assorted.DeadlockMain()
+
 	fmt.Println("========== Executing assorted.DeadlockMain ==============")
-	assorted.DeadlockMain()
+	concurrency.PassingTheBuckMain()
 }
