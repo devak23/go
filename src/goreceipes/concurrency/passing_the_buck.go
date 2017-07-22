@@ -31,7 +31,7 @@ func PassingTheBuckMain() {
 }
 
 func passTheBuck(chName string, ch chan int) {
-	// Schedule the syncutils's Done method
+	// Schedule the WaitGroup's Done method
 	defer syncutils.Wg.Done()
 	for {
 		// receive message from the channel
