@@ -1,6 +1,7 @@
 package concurrency
 
 import (
+	"goreceipes/concurrency/syncutils"
 	"math/rand"
 	"math"
 	"fmt"
@@ -12,7 +13,7 @@ import (
 // simply prints the numbers as it receives
 func PipelineMain() {
 	// tell the main goroutine that there are 3 goroutines to be waited for
-	waitGroup.Add(3)
+	syncutils.Wg.Add(3)
 
 	// create channels to be shared between the goroutines.
 	chRandomNumbers := make(chan int) // shared between 1st and 2nd
@@ -29,13 +30,13 @@ func PipelineMain() {
 	go printFibonacci(chFibsForNumbers)
 
 	// wait for all goroutines
-	waitGroup.Wait()
+	syncutils.Wg.Wait()
 }
 
 // the function that randomly generates random numbers and sends it out on the channel
 // to goroutine# 2
 func generateRandomNumber(out chan <- int) {
-	defer waitGroup.Done()
+	defer syncutils.Wg.Done()
 	var random int
 	for x := 0; x < 10; x++ {
 		random = rand.Intn(50)
@@ -58,7 +59,7 @@ type fibvalue struct {
 // writing anything into this channel would cause compilation error.
 func generateFibonacci(out chan <- fibvalue, in <- chan int) {
 	// let the main goroutine know that this goroutine is done
-	defer waitGroup.Done()
+	defer syncutils.Wg.Done()
 	var input float64
 	for v := range in {
 		input = float64(v)
@@ -80,7 +81,7 @@ func generateFibonacci(out chan <- fibvalue, in <- chan int) {
 // printFibonacci will read the channel and print each fiboancci numbers
 func printFibonacci(in <- chan fibvalue) {
 	// let the main goroutine know this goroutine is done executing.
-	defer waitGroup.Done()
+	defer syncutils.Wg.Done()
 
 	// print the values of the number and it's fiboanacci value
 	for v := range in {

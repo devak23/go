@@ -1,12 +1,12 @@
 package concurrency
 
 import (
-	"sync"
 	"fmt"
 	"time"
+	"goreceipes/concurrency/syncutils"
 )
+
 // this is to make the main program wait for other go routines to finish
-var waitGroup sync.WaitGroup
 
 // the main program
 func PassingTheBuckMain() {
@@ -14,7 +14,7 @@ func PassingTheBuckMain() {
 	// create a channel that will be shared with 2 go routines
 	channel := make(chan int)
 	// set the waitGroup to 2 so that the program waits for 2 go routines before terminating
-	waitGroup.Add(2)
+	syncutils.Wg.Add(2)
 
 	fmt.Println("Starting Goroutines")
 	// start the two go routines
@@ -26,13 +26,13 @@ func PassingTheBuckMain() {
 	// initiate the data flow
 	channel <- 1 // <-- this is a blocking call. Main go routine will be blocked here
 	// wait for the goroutines to finish
-	waitGroup.Wait()
+	syncutils.Wg.Wait()
 	fmt.Println("\nTerminating program")
 }
 
 func passTheBuck(chName string, ch chan int) {
-	// Schedule the waitgroup's Done method
-	defer waitGroup.Done()
+	// Schedule the syncutils's Done method
+	defer syncutils.Wg.Done()
 	for {
 		// receive message from the channel
 		value, ok := <- ch
