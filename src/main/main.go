@@ -110,6 +110,9 @@ func main() {
 	//fmt.Println("========== Executing assorted.DeadlockMain ==============")
 	//assorted.DeadlockMain()
 
-	fmt.Println("========== Executing assorted.DeadlockMain ==============")
-	concurrency.PassingTheBuckMain()
+	//fmt.Println("========== Executing assorted.DeadlockMain ==============")
+	//concurrency.PassingTheBuckMain()
+
+	fmt.Println("========== Executing concurrency.PipelineMain ==============")
+	concurrency.PipelineMain()
 }
