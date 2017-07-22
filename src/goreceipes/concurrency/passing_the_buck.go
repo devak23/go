@@ -42,12 +42,12 @@ func passTheBuck(chName string, ch chan int) {
 			return
 		}
 
-		// Print the fiboValue received from the channel
+		// Print the value received from the channel
 		fmt.Printf("Count %d received from go routine %s\n", value, chName)
 		// simulate a delay
 		time.Sleep(time.Duration(1 * time.Second))
 
-		// if the fiboValue is 10, then close the channel
+		// if the value is 10, then close the channel
 		if value == 10 {
 			fmt.Printf("Channel closed from %s\n", chName)
 			close(ch)
@@ -56,11 +56,11 @@ func passTheBuck(chName string, ch chan int) {
 		// else increment the counter
 		value++
 
-		// send the fiboValue back to another go routine
+		// send the value back to another go routine
 		ch <- value // <-- This is a blocking call
 	}
 }
 
 // You can see that the buck gets passed between routine1 and routine2. The reason that happens is because
 // the main goroutine does not read the channel and thus has no role to play in incrementing the counter.
-// Therefore when routine 1 writes into the channel, there is only routine 2 which reads the fiboValue.
+// Therefore when routine 1 writes into the channel, there is only routine 2 which reads the value.

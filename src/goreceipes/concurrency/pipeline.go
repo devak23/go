@@ -34,7 +34,7 @@ func PipelineMain() {
 
 // the function that randomly generates random numbers and sends it out on the channel
 // to goroutine# 2
-func generateRandomNumber(out chan int) {
+func generateRandomNumber(out chan <- int) {
 	defer waitGroup.Done()
 	var random int
 	for x := 0; x < 10; x++ {
@@ -52,7 +52,11 @@ type fibvalue struct {
 
 // generateFibonacci will read the values from the "in" channel, compute the Fibonacci
 // value using the Binet's formula and write to the out channel to goroutine #3
-func generateFibonacci(out chan fibvalue, in chan int) {
+// The out channel is declared as only "write" or outgoing as fibvalue will be written
+// into it. Therefore it will be a compilation error to read from an out channel. Similarly
+// the "in channel" is marked as "read" or incoming as it reads the random numbers; and hence
+// writing anything into this channel would cause compilation error.
+func generateFibonacci(out chan <- fibvalue, in <- chan int) {
 	// let the main goroutine know that this goroutine is done
 	defer waitGroup.Done()
 	var input float64
@@ -74,7 +78,7 @@ func generateFibonacci(out chan fibvalue, in chan int) {
 }
 
 // printFibonacci will read the channel and print each fiboancci numbers
-func printFibonacci(in chan fibvalue) {
+func printFibonacci(in <- chan fibvalue) {
 	// let the main goroutine know this goroutine is done executing.
 	defer waitGroup.Done()
 
