@@ -116,7 +116,10 @@ func main() {
 	//fmt.Println("========== Executing concurrency.PipelineMain ==============")
 	//concurrency.PipelineMain()
 
-	fmt.Println("========== Executing concurrency.AsyncCommMain() ==============")
-	concurrency.AsyncCommMain()
+	//fmt.Println("========== Executing concurrency.AsyncCommMain() ==============")
+	//concurrency.AsyncCommMain()
+
+	fmt.Println("========== Executing concurrency.MultiChannelCommMain() ==============")
+	concurrency.MultiChannelCommMain()
 
 }
