@@ -44,23 +44,29 @@ func MultiChannelCommMain() {
 
 // print the output of each channel
 func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, dblCh <-chan NumberObject, quitCh <- chan QuitObject) {
+	// let the 'main' know i'm done
 	defer syncutils.Wg.Done()
-	exhausedMap := make(map[string]int) // maintains a count of how many channels are exhausted
-	exhausedMap["sqCh"] = 0
-	exhausedMap["fibCh"] = 0
-	exhausedMap["dblCh"] = 0
+
+	// maintains a count of how many channels are exhausted
+	channelMap := make(map[string]int)
+
+	// initialize with zero. After each goroutine is done executing, they will send a "1" into the map as a "quit signal"
+	channelMap["sqCh"] = 0
+	channelMap["fibCh"] = 0
+	channelMap["dblCh"] = 0
+
 	for {
 		select {
-		case obj, _ := <-sqCh:
+		case obj := <- sqCh:
 			fmt.Printf("Square of %d = \t%d\n", obj.number, obj.value)
-		case obj, _ := <-fibCh:
+		case obj := <- fibCh:
 			fmt.Printf("Fibonacci of %d = %d\n", obj.number, obj.value)
-		case obj, _ := <-dblCh:
+		case obj := <- dblCh:
 			fmt.Printf("Double of %d = \t%d\n", obj.number, obj.value)
 		case val := <- quitCh:
-			exhausedMap[val.channelName] = val.quitValue
-			if exhausedMap["sqCh"] == 1 && exhausedMap["fibCh"] == 1 && exhausedMap["dblCh"] == 1{
-				fmt.Println("All channels are exhausted")
+			channelMap[val.channelName] = val.quitValue
+			if channelMap["sqCh"] == 1 && channelMap["fibCh"] == 1 && channelMap["dblCh"] == 1{
+				fmt.Println("All channels are done executing. Break the infinite loop")
 				return
 			}
 		}
@@ -80,6 +86,7 @@ func calculateDouble(dblCh chan<- NumberObject, quitCh chan <- QuitObject) {
 
 // calculate fibonacci
 func calculateFibonacci(fibCh chan<- NumberObject, quitCh chan <- QuitObject) {
+	// let the main know I'm done
 	defer syncutils.Wg.Done()
 
 	for i := 0; i < 10; i++ {
@@ -95,6 +102,7 @@ func calculateFibonacci(fibCh chan<- NumberObject, quitCh chan <- QuitObject) {
 
 // calculates squares
 func calculateSquares(sqCh chan<- NumberObject, quitCh chan <- QuitObject) {
+	// let the main know I'm done
 	defer syncutils.Wg.Done()
 
 	for i := 0; i < 10; i++ {
