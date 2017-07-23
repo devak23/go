@@ -12,6 +12,11 @@ type NumberObject struct {
 	value  int
 }
 
+type QuitObject struct {
+	channelName string
+	quitValue int
+}
+
 // Main
 func MultiChannelCommMain() {
 	// notify the main of 4 threads in play
@@ -20,15 +25,16 @@ func MultiChannelCommMain() {
 	// create channels for each function
 	squareCh := make(chan NumberObject)
 	fibCh := make(chan NumberObject)
-	doubleCh := make(chan NumberObject)
+	dblCh := make(chan NumberObject)
+	quitCh := make(chan QuitObject, 3)
 
 	// launch threads to calculate values
-	go calculateSquares(squareCh)
-	go calculateFibonacci(fibCh)
-	go calculateDouble(doubleCh)
+	go calculateSquares(squareCh, quitCh)
+	go calculateFibonacci(fibCh, quitCh)
+	go calculateDouble(dblCh, quitCh)
 
 	// launch the printer thread
-	go printChannels(squareCh, fibCh, doubleCh)
+	go printChannels(squareCh, fibCh, dblCh, quitCh)
 
 	// wait for threads to complete
 	syncutils.Wg.Wait()
@@ -37,51 +43,43 @@ func MultiChannelCommMain() {
 }
 
 // print the output of each channel
-func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, doubleCh <-chan NumberObject) {
+func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, dblCh <-chan NumberObject, quitCh <- chan QuitObject) {
 	defer syncutils.Wg.Done()
 	exhausedMap := make(map[string]int) // maintains a count of how many channels are exhausted
 	exhausedMap["sqCh"] = 0
 	exhausedMap["fibCh"] = 0
-	exhausedMap["doubleCh"] = 0
-	for i:= 0; i<30; i++ {
-		//if exhausedMap["sqCh"] == 1 && exhausedMap["fibCh"] == 1 && exhausedMap["doubleCh"] == 1{
-		//	fmt.Println("All channels are exhausted")
-		//	return
-		//}
+	exhausedMap["dblCh"] = 0
+	for {
 		select {
-		case sqObj, ok := <-sqCh:
-			if ok {
-				fmt.Printf("Square of %d = \t%d\n", sqObj.number, sqObj.value)
-			} else {
-				exhausedMap["sqCh"] = 1
-			}
-		case fibObj, ok := <-fibCh:
-			if ok {
-				fmt.Printf("Fibonacci of %d = %d\n", fibObj.number, fibObj.value)
-			} else {
-				exhausedMap["fibCh"] = 1
-			}
-		case doubleObj, ok := <-doubleCh:
-			if ok {
-				fmt.Printf("Double of %d = \t%d\n", doubleObj.number, doubleObj.value)
-			} else {
-				exhausedMap["doubleCh"] = 1
+		case obj, _ := <-sqCh:
+			fmt.Printf("Square of %d = \t%d\n", obj.number, obj.value)
+		case obj, _ := <-fibCh:
+			fmt.Printf("Fibonacci of %d = %d\n", obj.number, obj.value)
+		case obj, _ := <-dblCh:
+			fmt.Printf("Double of %d = \t%d\n", obj.number, obj.value)
+		case val := <- quitCh:
+			exhausedMap[val.channelName] = val.quitValue
+			if exhausedMap["sqCh"] == 1 && exhausedMap["fibCh"] == 1 && exhausedMap["dblCh"] == 1{
+				fmt.Println("All channels are exhausted")
+				return
 			}
 		}
 	}
 }
 
 // calculates double
-func calculateDouble(doubleCh chan<- NumberObject) {
+func calculateDouble(dblCh chan<- NumberObject, quitCh chan <- QuitObject) {
 	defer syncutils.Wg.Done()
 
 	for i := 0; i < 10; i++ {
-		doubleCh <- NumberObject{number: i, value: i * 2}
+		dblCh <- NumberObject{number: i, value: i * 2}
 	}
+	// send the quit signal
+	quitCh <- QuitObject{"dblCh", 1}
 }
 
 // calculate fibonacci
-func calculateFibonacci(fibCh chan<- NumberObject) {
+func calculateFibonacci(fibCh chan<- NumberObject, quitCh chan <- QuitObject) {
 	defer syncutils.Wg.Done()
 
 	for i := 0; i < 10; i++ {
@@ -91,13 +89,17 @@ func calculateFibonacci(fibCh chan<- NumberObject) {
 		result := (math.Pow(Phi, num) - math.Pow(phi, num)) / math.Sqrt(5)
 		fibCh <- NumberObject{number: int(num), value: int(result)}
 	}
+	// send the quit signal
+	quitCh <- QuitObject{"fibCh", 1}
 }
 
 // calculates squares
-func calculateSquares(sqCh chan<- NumberObject) {
+func calculateSquares(sqCh chan<- NumberObject, quitCh chan <- QuitObject) {
 	defer syncutils.Wg.Done()
 
 	for i := 0; i < 10; i++ {
 		sqCh <- NumberObject{number: i, value: i * i}
 	}
+	// send the quit signal
+	quitCh <- QuitObject{"sqCh", 1}
 }
