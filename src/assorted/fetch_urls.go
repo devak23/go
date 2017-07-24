@@ -7,22 +7,32 @@ import (
 	"io/ioutil"
 )
 
-var urls = []string {
-	"http://www.yahoo.com",
-	"http://www.msn.com",
-	"http://www.nytimes.com",
-}
 var waitGroup sync.WaitGroup
 
 func FetchUrlsMain() {
+	var urls = []string {
+		"http://www.yahoo.com",
+		"http://www.msn.com",
+		"http://www.nytimes.com",
+		"http://www.google.com",
+		"http://www.bing.com",
+		"http://www.apache.org",
+		"http://www.amazon.com",
+		"http://www.gmail.com",
+	}
+
 	// define the number of goroutines you intend to use
 	waitGroup.Add(len(urls))
+	go worker(urls)
 
+	waitGroup.Wait()
+	fmt.Println("Done!\n")
+}
+
+func worker(urls []string) {
 	for _, v := range urls {
 		go fetchUrl(v)
 	}
-	waitGroup.Wait()
-	fmt.Println("Done!\n")
 }
 
 func fetchUrl(url string) {
@@ -41,6 +51,5 @@ func fetchUrl(url string) {
 		} else {
 			fmt.Println(string(byte_array))
 		}
-		//fmt.Println(response)
 	}
 }

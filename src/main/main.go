@@ -6,7 +6,8 @@ import (
 	_ "gobyexample"
 	_ "goreceipes/concurrency"
 	_ "assorted"
-	"goreceipes/concurrency"
+	_ "goreceipes/concurrency"
+	"assorted"
 )
 
 func main() {
@@ -101,8 +102,8 @@ func main() {
 	//fmt.Println("========== Executing concurrency.WaitGroupMain ==============")
 	//concurrency.WaitGroupMain()
 
-	//fmt.Println("========== Executing concurrency.FetchUrlsMain ==============")
-	//assorted.FetchUrlsMain()
+	fmt.Println("========== Executing concurrency.FetchUrlsMain ==============")
+	assorted.FetchUrlsMain()
 
 	//fmt.Println("========== Executing assorted.CommunicationMain ==============")
 	//assorted.CommunicationMain()
@@ -119,7 +120,7 @@ func main() {
 	//fmt.Println("========== Executing concurrency.AsyncCommMain() ==============")
 	//concurrency.AsyncCommMain()
 
-	fmt.Println("========== Executing concurrency.MultiChannelCommMain() ==============")
-	concurrency.MultiChannelCommMain()
+	//fmt.Println("========== Executing concurrency.MultiChannelCommMain() ==============")
+	//concurrency.MultiChannelCommMain()
 
 }
