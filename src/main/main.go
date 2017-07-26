@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "assorted"
-	"fmt"
 	_ "gobyexample"
 	_ "goreceipes/concurrency"
 	"goreceipes/fundamentals"
@@ -121,6 +120,9 @@ func main() {
 	//fmt.Println("========== Executing concurrency.MultiChannelCommMain() ==============")
 	//concurrency.MultiChannelCommMain()
 
-	fmt.Println("========== Executing fundamentals.MapIterationMain() ==============")
-	fundamentals.MapIterationMain()
+	// fmt.Println("========== Executing fundamentals.MapIterationMain() ==============")
+	// fundamentals.MapIterationMain()
+
+	// fmt.Println("=========== Executing fundamentals.FileReadMain() ==================")
+	fundamentals.FileReadMain()
 }
