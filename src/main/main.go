@@ -53,5 +53,6 @@ func main() {
 	// fundamentals.MapIterationMain()
 	// fundamentals.FileReadMain()
 	// waytogo.ReadInputBasicMain()
-	waytogo.ReadWithBufIoMain()
+	// waytogo.ReadWithBufIoMain()
+	waytogo.WordLetterCountMain()
 }
