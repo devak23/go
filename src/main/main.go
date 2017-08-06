@@ -5,7 +5,8 @@ import (
 	//_ "gobyexample"
 	//_ "goreceipes/concurrency"
 	//_ "goreceipes/fundamentals"
-	 "waytogo"
+	//_ "waytogo"
+  "assorted/web_scraping"
 )
 
 func main() {
@@ -54,5 +55,6 @@ func main() {
 	// fundamentals.FileReadMain()
 	// waytogo.ReadInputBasicMain()
 	// waytogo.ReadWithBufIoMain()
-	waytogo.WordLetterCountMain()
+	// waytogo.WordLetterCountMain()
+    web_scraping.ListPostsMain()
 }
