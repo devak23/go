@@ -58,5 +58,7 @@ func main() {
 	// waytogo.ReadWithBufIoMain()
 	// waytogo.WordLetterCountMain()
   // web_scraping.ListPostsMain()
-  goinpractise.EchoMain()
+  // goinpractise.EchoMain()
+  // goinpractise.AnonymousMain()
+  goinpractise.ZipFileMain()
 }
