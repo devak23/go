@@ -6,7 +6,8 @@ import (
 	//_ "goreceipes/concurrency"
 	//_ "goreceipes/fundamentals"
 	//_ "waytogo"
-  "assorted/web_scraping"
+  //_ "assorted/web_scraping"
+      "goinpractise"
 )
 
 func main() {
@@ -56,5 +57,6 @@ func main() {
 	// waytogo.ReadInputBasicMain()
 	// waytogo.ReadWithBufIoMain()
 	// waytogo.WordLetterCountMain()
-    web_scraping.ListPostsMain()
+  // web_scraping.ListPostsMain()
+  goinpractise.EchoMain()
 }
