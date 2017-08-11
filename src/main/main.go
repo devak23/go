@@ -62,6 +62,6 @@ func main() {
   // goinpractise.AnonymousMain()
   // goinpractise.ZipFileMain()
   // goinpractise.ZipFileConcMain()
-	assorted.RedisPrimerMain()
-  //  assorted.SwearFilterMain()
+	//assorted.RedisPrimerMain()
+    assorted.SwearFilterMain()
 }
