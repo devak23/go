@@ -1,13 +1,13 @@
 package main
 
 import (
-	//_ "assorted"
-	//_ "gobyexample"
-	//_ "goreceipes/concurrency"
-	//_ "goreceipes/fundamentals"
-	//_ "waytogo"
-  //_ "assorted/web_scraping"
-      "goinpractise"
+	"assorted"
+	_ "gobyexample"
+	_ "goreceipes/concurrency"
+	_ "goreceipes/fundamentals"
+	_ "waytogo"
+  _ "assorted/web_scraping"
+  _ "goinpractise"
 )
 
 func main() {
@@ -61,5 +61,7 @@ func main() {
   // goinpractise.EchoMain()
   // goinpractise.AnonymousMain()
   // goinpractise.ZipFileMain()
-  goinpractise.ZipFileConcMain()
+  // goinpractise.ZipFileConcMain()
+	assorted.RedisPrimerMain()
+  //  assorted.SwearFilterMain()
 }
