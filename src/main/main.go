@@ -60,5 +60,6 @@ func main() {
   // web_scraping.ListPostsMain()
   // goinpractise.EchoMain()
   // goinpractise.AnonymousMain()
-  goinpractise.ZipFileMain()
+  // goinpractise.ZipFileMain()
+  goinpractise.ZipFileConcMain()
 }
