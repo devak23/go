@@ -64,5 +64,6 @@ func main() {
 	// goinpractise.ZipFileConcMain()
 	// assorted.RedisPrimerMain()
 	// assorted.SwearFilterMain()
-	assorted.EfficientStringConcatMain()
+	//assorted.EfficientStringConcatMain()
+	assorted.DoubleTheMoneyMain()
 }
