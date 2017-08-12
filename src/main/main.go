@@ -6,8 +6,8 @@ import (
 	_ "goreceipes/concurrency"
 	_ "goreceipes/fundamentals"
 	_ "waytogo"
-  _ "assorted/web_scraping"
-  _ "goinpractise"
+	_ "assorted/web_scraping"
+	_ "goinpractise"
 )
 
 func main() {
@@ -57,11 +57,12 @@ func main() {
 	// waytogo.ReadInputBasicMain()
 	// waytogo.ReadWithBufIoMain()
 	// waytogo.WordLetterCountMain()
-  // web_scraping.ListPostsMain()
-  // goinpractise.EchoMain()
-  // goinpractise.AnonymousMain()
-  // goinpractise.ZipFileMain()
-  // goinpractise.ZipFileConcMain()
-	//assorted.RedisPrimerMain()
-    assorted.SwearFilterMain()
+	// web_scraping.ListPostsMain()
+	// goinpractise.EchoMain()
+	// goinpractise.AnonymousMain()
+	// goinpractise.ZipFileMain()
+	// goinpractise.ZipFileConcMain()
+	// assorted.RedisPrimerMain()
+	// assorted.SwearFilterMain()
+	assorted.EfficientStringConcatMain()
 }
