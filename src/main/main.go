@@ -65,5 +65,6 @@ func main() {
 	// assorted.RedisPrimerMain()
 	// assorted.SwearFilterMain()
 	//assorted.EfficientStringConcatMain()
-	assorted.DoubleTheMoneyMain()
+	//assorted.DoubleTheMoneyMain()
+	assorted.StringLengthMain()
 }
