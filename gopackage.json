@@ -1,0 +1,28 @@
+{
+  "name": "go",
+  "version": "1.8.0",
+  "description": "go programs",
+  "main": "main/main.go",
+  "dependencies": {
+    "github.com/PuerkitoBio/goquery": "1.1.0",
+    "github.com/garyburd/redigo/redis": "",
+    "github.com/mattn/go-sqlite3": ""
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devak23/go.git"
+  },
+  "keywords": [
+    "go","golang"
+  ],
+  "author": "abhay kulkarni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devak23/nodejs/issues"
+  },
+  "homepage": "https://github.com/devak23/nodejs#readme"
+}
