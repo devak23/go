@@ -11,6 +11,7 @@ package main
 import (
   "encoding/json"
   "fmt"
+  "flag"
   "io/ioutil"
   "os"
   "os/exec"
@@ -33,8 +34,26 @@ type Package struct {
   Homepage        map[string]string    `json: homepage`
 }
 
+func isEmpty(element string) bool {
+  return len(element) == 0
+}
+
 func main() {
   var wg sync.WaitGroup
+
+  // the flag.String returns a pointer not the value
+  flgSave := flag.String ("save", "", "instructs gpm to write the dependency into the gopackage.json file")
+  flgInstall := flag.String ("install", "", "instructs go to install a dependency")
+  fmt.Printf("flgInstall = %s\n", *flgInstall)
+  fmt.Printf("flgSave = %s\n", *flgSave)
+
+  // parse the command line flags
+  flag.Parse()
+
+  if len(os.Args) == 1 || isEmpty(*flgInstall)  {
+    fmt.Printf("Usage:\tgpm install OR\n\tgpm install <dependency-name> -save\n")
+    os.Exit(1)
+  }
 
   // check for the existence of gopackage.json
   mypackage := readPackage()
@@ -42,7 +61,9 @@ func main() {
   //TODO: check if there is another dependency specified with --save flag
 
   // if no other flags are passed, simply install all dependencies
-  installAllDependencies(mypackage, &wg)
+  if isEmpty(*flgSave) {
+    installAllDependencies(mypackage, &wg)
+  }
 
   // pause for all the goroutines to end
   wg.Wait()
