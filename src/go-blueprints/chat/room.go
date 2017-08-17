@@ -15,6 +15,7 @@ var upgrader = &websocket.Upgrader { ReadBufferSize: socketBufferSize, WriteBuff
 
 func (r *room) ServeHTTP (res http.ResponseWriter, req *http.Request) {
   socket, err := upgrader.Upgrade(res, req, nil)
+  res.Header().Set("proxy_set_header Origin", "")
   if err != nil {
     log.Fatal("ServeHTTP error:",err)
     return
