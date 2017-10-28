@@ -2,12 +2,12 @@ package main
 
 import (
 	"assorted"
+	_ "assorted/web_scraping"
 	_ "gobyexample"
+	_ "goinpractise"
 	_ "goreceipes/concurrency"
 	_ "goreceipes/fundamentals"
 	_ "waytogo"
-	_ "assorted/web_scraping"
-	_ "goinpractise"
 )
 
 func main() {
@@ -22,6 +22,7 @@ func main() {
 	// assorted.ConstantsMain()
 	// assorted.DoubleNumberMain()
 	// assorted.FunctionsMain()
+	// assorted.InputNumberMain()
 	// assorted.IntAndFloatMain()
 	// assorted.SampleStructMain()
 	// goinpractise.MutlipleReturnsMain()
@@ -65,6 +66,6 @@ func main() {
 	// assorted.RedisPrimerMain()
 	// assorted.SwearFilterMain()
 	//assorted.EfficientStringConcatMain()
-	//assorted.DoubleTheMoneyMain()
-	assorted.StringLengthMain()
+	assorted.DoubleTheMoneyMain()
+	// assorted.StringLengthMain()
 }

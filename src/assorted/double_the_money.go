@@ -1,11 +1,11 @@
 package assorted
 
 import (
-	"fmt"
-	"os"
-	"math/rand"
-	"time"
 	"bufio"
+	"fmt"
+	"math/rand"
+	"os"
+	"time"
 )
 
 func DoubleTheMoneyMain() {
@@ -35,7 +35,7 @@ func DoubleTheMoneyMain() {
 			break
 		}
 
-		if (result == 6) {
+		if result == 6 {
 			time.Sleep(3 * time.Second)
 			bet := bet * 2
 			fmt.Printf("\nYou win! you got double the money your bet just got doubled (%d)\n", bet)
@@ -44,7 +44,7 @@ func DoubleTheMoneyMain() {
 			time.Sleep(1 * time.Second)
 			fmt.Printf("You have %d more chances. Press Enter to roll the dice or \"q\" to quit: ", chances)
 			reader := bufio.NewReader(os.Stdin)
-			quit, _ , _ := reader.ReadLine()
+			quit, _, _ := reader.ReadLine()
 			if string(quit) == "Q" || string(quit) == "q" {
 				time.Sleep(1 * time.Second)
 				fmt.Println("\nYou should have played the game as you wont get your money back!")
@@ -59,7 +59,7 @@ func DoubleTheMoneyMain() {
 }
 
 func rollDice() int {
-	max, min  := 6 , 1
+	max, min := 6, 1
 	rand.Seed(time.Now().UTC().UnixNano())
-	return rand.Intn(max - min) + min
+	return rand.Intn(max-min) + min
 }
