@@ -7,9 +7,10 @@ import (
 
 var wg sync.WaitGroup
 
-const salutation = "Hello"
-
+// this is how we define a closure. Much similar to Javascript.
 func main() {
+	salutation := "Hello"
+	
 	sayHello := func() {
 		defer wg.Done()
 		fmt.Println(salutation)
