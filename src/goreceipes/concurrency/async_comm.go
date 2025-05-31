@@ -1,10 +1,10 @@
 package concurrency
 
 import (
-	"time"
-	"goreceipes/concurrency/syncutils"
 	"fmt"
+	"golearning/src/goreceipes/concurrency/syncutils"
 	"math/rand"
+	"time"
 )
 
 // define an interface Runnable that has a run method
@@ -14,9 +14,9 @@ type Runnable interface {
 
 // define a Task struct that holds data for a Task
 type Task struct {
-	Id int
-	JobId int
-	Status string
+	Id        int
+	JobId     int
+	Status    string
 	CreatedOn time.Time
 }
 
@@ -26,7 +26,7 @@ func AsyncCommMain() {
 	syncutils.Wg.Add(3)
 
 	// create a buffered queue(channel) of 10 tasks
-	queue := make (chan *Task, 10)
+	queue := make(chan *Task, 10)
 
 	// Launch the goroutines that handle the work
 	for i := 0; i < 3; i++ {
@@ -34,10 +34,10 @@ func AsyncCommMain() {
 	}
 
 	// fill up the queue with Tasks
-	for i:=0; i<10; i++ {
+	for i := 0; i < 10; i++ {
 		queue <- &Task{
-			Id: i,
-			JobId: 100 + i,
+			Id:        i,
+			JobId:     100 + i,
 			CreatedOn: time.Now(),
 		}
 	}
@@ -51,7 +51,7 @@ func AsyncCommMain() {
 
 // worker is launched as goroutine processes task from the queue
 // The taskChannel is marked as readonly.
-func worker(taskChannel <- chan *Task, workerId int) {
+func worker(taskChannel <-chan *Task, workerId int) {
 	defer syncutils.Wg.Done()
 
 	// Run the task for each entry from the channel
@@ -69,6 +69,6 @@ func worker(taskChannel <- chan *Task, workerId int) {
 func (t *Task) Run() {
 	// introducing a delay to simulate working
 	sleepDuration := rand.Int63n(1000)
-	time.Sleep(time.Duration(sleepDuration)  * time.Millisecond)
+	time.Sleep(time.Duration(sleepDuration) * time.Millisecond)
 	t.Status = "Completed"
 }

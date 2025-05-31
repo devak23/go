@@ -1,11 +1,11 @@
 package goinpractise
 
 import (
-	"os"
-	"io"
 	"compress/gzip"
 	"fmt"
-	"goreceipes/concurrency/syncutils"
+	"golearning/src/goreceipes/concurrency/syncutils"
+	"io"
+	"os"
 	"time"
 )
 
@@ -20,7 +20,7 @@ func ZipFileConcMain() {
 		os.Exit(1)
 	}
 
-	var wg  = syncutils.Wg
+	var wg = syncutils.Wg
 	var startTime = time.Now()
 
 	// read the files from the os.Args[1:]
@@ -37,7 +37,7 @@ func ZipFileConcMain() {
 
 	wg.Wait()
 	var elapsedTime = time.Since(startTime)
-	fmt.Printf("Total time taken to compress %d files = %f seconds\n", count, (elapsedTime/1000))
+	fmt.Printf("Total time taken to compress %d files = %f seconds\n", count, (elapsedTime / 1000))
 }
 
 func compress(filename string) error {

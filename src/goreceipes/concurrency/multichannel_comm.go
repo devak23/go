@@ -1,8 +1,8 @@
 package concurrency
 
 import (
-	"goreceipes/concurrency/syncutils"
 	"fmt"
+	"golearning/src/goreceipes/concurrency/syncutils"
 	"math"
 )
 
@@ -14,7 +14,7 @@ type NumberObject struct {
 
 type QuitObject struct {
 	channelName string
-	quitValue int
+	quitValue   int
 }
 
 // Main
@@ -43,7 +43,7 @@ func MultiChannelCommMain() {
 }
 
 // print the output of each channel
-func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, dblCh <-chan NumberObject, quitCh <- chan QuitObject) {
+func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, dblCh <-chan NumberObject, quitCh <-chan QuitObject) {
 	// let the 'main' know i'm done
 	defer syncutils.Wg.Done()
 
@@ -57,15 +57,15 @@ func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, dblCh <-
 
 	for {
 		select {
-		case obj := <- sqCh:
+		case obj := <-sqCh:
 			fmt.Printf("Square of %d = \t%d\n", obj.number, obj.value)
-		case obj := <- fibCh:
+		case obj := <-fibCh:
 			fmt.Printf("Fibonacci of %d = %d\n", obj.number, obj.value)
-		case obj := <- dblCh:
+		case obj := <-dblCh:
 			fmt.Printf("Double of %d = \t%d\n", obj.number, obj.value)
-		case val := <- quitCh:
+		case val := <-quitCh:
 			channelMap[val.channelName] = val.quitValue
-			if channelMap["sqCh"] == 1 && channelMap["fibCh"] == 1 && channelMap["dblCh"] == 1{
+			if channelMap["sqCh"] == 1 && channelMap["fibCh"] == 1 && channelMap["dblCh"] == 1 {
 				fmt.Println("All channels are done executing. Break the infinite loop")
 				return
 			}
@@ -74,7 +74,7 @@ func printChannels(sqCh <-chan NumberObject, fibCh <-chan NumberObject, dblCh <-
 }
 
 // calculates double
-func calculateDouble(dblCh chan<- NumberObject, quitCh chan <- QuitObject) {
+func calculateDouble(dblCh chan<- NumberObject, quitCh chan<- QuitObject) {
 	defer syncutils.Wg.Done()
 
 	for i := 0; i < 10; i++ {
@@ -85,7 +85,7 @@ func calculateDouble(dblCh chan<- NumberObject, quitCh chan <- QuitObject) {
 }
 
 // calculate fibonacci
-func calculateFibonacci(fibCh chan<- NumberObject, quitCh chan <- QuitObject) {
+func calculateFibonacci(fibCh chan<- NumberObject, quitCh chan<- QuitObject) {
 	// let the main know I'm done
 	defer syncutils.Wg.Done()
 
@@ -101,7 +101,7 @@ func calculateFibonacci(fibCh chan<- NumberObject, quitCh chan <- QuitObject) {
 }
 
 // calculates squares
-func calculateSquares(sqCh chan<- NumberObject, quitCh chan <- QuitObject) {
+func calculateSquares(sqCh chan<- NumberObject, quitCh chan<- QuitObject) {
 	// let the main know I'm done
 	defer syncutils.Wg.Done()
 

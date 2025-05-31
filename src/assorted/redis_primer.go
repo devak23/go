@@ -1,12 +1,12 @@
 package assorted
 
 import (
-	"github.com/garyburd/redigo/redis"
 	"fmt"
+	"github.com/garyburd/redigo/redis"
 	"os"
 )
 
-func RedisPrimerMain()  {
+func RedisPrimerMain() {
 	// make a connection to redis
 	conn, err := redis.Dial("tcp", "localhost:6379")
 	if err != nil {
@@ -20,7 +20,7 @@ func RedisPrimerMain()  {
 
 	if len(values) == 0 {
 		// if they are not, load them
-		conn.Do("SADD", "curse_words", "shit" ,"crap", "fuck")
+		conn.Do("SADD", "curse_words", "shit", "crap", "fuck")
 	}
 
 	// again get them from Redis
@@ -32,7 +32,6 @@ func RedisPrimerMain()  {
 		fmt.Println(index, " => ", curseWord)
 	}
 }
-
 
 // function takes in the redis connection and checks if the key lies in the SET of values
 func getValuesFromSet(conn redis.Conn, key string) ([]interface{}, error) {

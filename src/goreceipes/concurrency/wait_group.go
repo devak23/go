@@ -1,8 +1,8 @@
 package concurrency
 
 import (
-	"goreceipes/concurrency/syncutils"
 	"fmt"
+	"golearning/src/goreceipes/concurrency/syncutils"
 	"math/rand"
 	"time"
 )

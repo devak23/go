@@ -2,8 +2,8 @@ package concurrency
 
 import (
 	"fmt"
+	"golearning/src/goreceipes/concurrency/syncutils"
 	"time"
-	"goreceipes/concurrency/syncutils"
 )
 
 // this is to make the main program wait for other go routines to finish
@@ -35,7 +35,7 @@ func passTheBuck(chName string, ch chan int) {
 	defer syncutils.Wg.Done()
 	for {
 		// receive message from the channel
-		value, ok := <- ch
+		value, ok := <-ch
 		// check if the channel was closed before you process anything
 		if !ok {
 			fmt.Printf("channel was closed for %s\n", chName)

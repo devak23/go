@@ -1,10 +1,10 @@
 package concurrency
 
 import (
-	"goreceipes/concurrency/syncutils"
-	"math/rand"
-	"math"
 	"fmt"
+	"golearning/src/goreceipes/concurrency/syncutils"
+	"math"
+	"math/rand"
 )
 
 // This program demonstrates a 3 stage pipe line with 3 goroutines and 2 channels connecting them. First
@@ -16,7 +16,7 @@ func PipelineMain() {
 	syncutils.Wg.Add(3)
 
 	// create channels to be shared between the goroutines.
-	chRandomNumbers := make(chan int) // shared between 1st and 2nd
+	chRandomNumbers := make(chan int)       // shared between 1st and 2nd
 	chFibsForNumbers := make(chan fibvalue) // shared between 2nd and 3rd
 	// launch goroutines now...
 
@@ -35,7 +35,7 @@ func PipelineMain() {
 
 // the function that randomly generates random numbers and sends it out on the channel
 // to goroutine# 2
-func generateRandomNumber(out chan <- int) {
+func generateRandomNumber(out chan<- int) {
 	defer syncutils.Wg.Done()
 	var random int
 	for x := 0; x < 10; x++ {
@@ -57,7 +57,7 @@ type fibvalue struct {
 // into it. Therefore it will be a compilation error to read from an out channel. Similarly
 // the "in channel" is marked as "read" or incoming as it reads the random numbers; and hence
 // writing anything into this channel would cause compilation error.
-func generateFibonacci(out chan <- fibvalue, in <- chan int) {
+func generateFibonacci(out chan<- fibvalue, in <-chan int) {
 	// let the main goroutine know that this goroutine is done
 	defer syncutils.Wg.Done()
 	var input float64
@@ -79,7 +79,7 @@ func generateFibonacci(out chan <- fibvalue, in <- chan int) {
 }
 
 // printFibonacci will read the channel and print each fiboancci numbers
-func printFibonacci(in <- chan fibvalue) {
+func printFibonacci(in <-chan fibvalue) {
 	// let the main goroutine know this goroutine is done executing.
 	defer syncutils.Wg.Done()
 
