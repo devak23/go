@@ -113,12 +113,12 @@ func TestDivideWithInvalidInputs(t *testing.T) {
 }
 
 func assertOutcome(t *testing.T, want float64, got float64) {
-	if !almostEqual(want, got) {
+	const epsilon = 1e-10 // or 0.000,000,000,1
+	if !almostEqual(want, got, epsilon) {
 		t.Errorf("wanted %f, got %f", want, got)
 	}
 }
 
-func almostEqual(a, b float64) bool {
-	const epsilon = 1e-10 // or 0.000,000,000,1
-	return math.Abs(a-b) < epsilon
+func almostEqual(a, b, tolerance float64) bool {
+	return math.Abs(a-b) < tolerance
 }
