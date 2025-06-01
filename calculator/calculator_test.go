@@ -78,6 +78,27 @@ func TestAddWithDecimals(t *testing.T) {
 	assertOutcome(t, want, got)
 }
 
+func TestMultiplyWithPositiveNumbers(t *testing.T) {
+	t.Parallel()
+	var want float64 = 25
+	got := calculator.Multiply(5, 5)
+	assertOutcome(t, want, got)
+}
+
+func TestMultiplyWithNegativeNumbers(t *testing.T) {
+	t.Parallel()
+	var want float64 = -30
+	got := calculator.Multiply(5, -6)
+	assertOutcome(t, want, got)
+}
+
+func TestMultiplyTwoNegativeNumbersShouldLeadToPositiveResult(t *testing.T) {
+	t.Parallel()
+	var want float64 = 30
+	got := calculator.Multiply(-5, -6)
+	assertOutcome(t, want, got)
+}
+
 func assertOutcome(t *testing.T, want float64, got float64) {
 	if want != got {
 		t.Errorf("wanted %f, got %f", want, got)
