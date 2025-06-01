@@ -27,3 +27,33 @@ func TestGreet_Spanish(t *testing.T) {
 		t.Errorf("expected: %q, got: %q", want, got)
 	}
 }
+
+type testCase struct {
+	lang language
+	want string
+}
+
+func TestGreet(t *testing.T) {
+	t.Parallel()
+
+	var tests = map[string]testCase{
+		"English":                 {EN, "Hello, World"},
+		"French":                  {FR, "Bonjour, le Monde"},
+		"Akkadian, not supported": {language("akk"), "unsupported language \"akk\""},
+		"Greek":                   {EL, "γεια σου κόσμε"},
+		"Urdu":                    {UR, "ہیلو دنیا"},
+		"Hebrew":                  {HE, "שלום עולם"},
+		"German":                  {DE, "Hallo Welt"},
+		"Vietnamese":              {VI, "xin chào thế giới"},
+		"Empty":                   {language(""), "unsupported language \"\""},
+	}
+
+	for name, test := range tests {
+		t.Run(name, func(t *testing.T) {
+			got := greetWithPhrasebook(test.lang)
+			if got != test.want {
+				t.Errorf("expected: %q, got: %q", test.want, got)
+			}
+		})
+	}
+}
