@@ -2,6 +2,7 @@ package calculator_test
 
 import (
 	"calculator"
+	"math"
 	"testing"
 )
 
@@ -78,8 +79,46 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
+func TestDivideWithValidInputs(t *testing.T) {
+	t.Parallel()
+	testCases := []testCase{
+		{4, 2, 2},
+		{2.5, 2.5, 1},
+		{-2.4, 0.4, -6},
+		{2, 4, 0.5},
+		{4, 2, 2},
+	}
+	for _, tc := range testCases {
+		got, err := calculator.Divide(tc.a, tc.b)
+		if err != nil {
+			t.Fatalf("Wanted no errors for valid inputs, but got: %v", err)
+		}
+		assertOutcome(t, tc.want, got)
+	}
+}
+
+func TestDivideWithInvalidInputs(t *testing.T) {
+	t.Parallel()
+	testCases := []testCase{
+		{0, 0, 0},
+		{2, 0, 0},
+	}
+
+	for _, tc := range testCases {
+		_, err := calculator.Divide(tc.a, tc.b)
+		if err == nil {
+			t.Fatalf("Wanted an error for invalid inputs, but got: %v", err)
+		}
+	}
+}
+
 func assertOutcome(t *testing.T, want float64, got float64) {
-	if want != got {
+	if !almostEqual(want, got) {
 		t.Errorf("wanted %f, got %f", want, got)
 	}
+}
+
+func almostEqual(a, b float64) bool {
+	const epsilon = 1e-10 // or 0.000,000,000,1
+	return math.Abs(a-b) < epsilon
 }
