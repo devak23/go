@@ -23,14 +23,14 @@ import (
 // t.Parallel() statement is a standard prelude to tests: it tells Go to run this test concurrently with other tests,
 //which saves time.
 
-type testCase struct {
+type twoParamTestCase struct {
 	a, b float64
 	want float64
 }
 
 func TestAdd(t *testing.T) {
 	t.Parallel()
-	testCases := []testCase{
+	testCases := []twoParamTestCase{
 		{2, 2, 4},
 		{-2, -2, -4},
 		{0, 0, 0},
@@ -46,7 +46,7 @@ func TestAdd(t *testing.T) {
 
 func TestSubtract(t *testing.T) {
 	t.Parallel()
-	testCases := []testCase{
+	testCases := []twoParamTestCase{
 		{4, 2, 2},
 		{0, 0, 0},
 		{2.5, 2.5, 0},
@@ -65,7 +65,7 @@ func TestSubtract(t *testing.T) {
 
 func TestMultiply(t *testing.T) {
 	t.Parallel()
-	testCases := []testCase{
+	testCases := []twoParamTestCase{
 		{2, 2, 4},
 		{-2, -2, 4},
 		{0, 0, 0},
@@ -81,7 +81,7 @@ func TestMultiply(t *testing.T) {
 
 func TestDivideWithValidInputs(t *testing.T) {
 	t.Parallel()
-	testCases := []testCase{
+	testCases := []twoParamTestCase{
 		{4, 2, 2},
 		{2.5, 2.5, 1},
 		{-2.4, 0.4, -6},
@@ -99,7 +99,7 @@ func TestDivideWithValidInputs(t *testing.T) {
 
 func TestDivideWithInvalidInputs(t *testing.T) {
 	t.Parallel()
-	testCases := []testCase{
+	testCases := []twoParamTestCase{
 		{0, 0, 0},
 		{2, 0, 0},
 	}
@@ -112,6 +112,44 @@ func TestDivideWithInvalidInputs(t *testing.T) {
 	}
 }
 
+type oneParamTestCase struct {
+	a    float64
+	want float64
+}
+
+func TestSqrtWithValidInputs(t *testing.T) {
+	t.Parallel()
+	testCases := []oneParamTestCase{
+		{4, 2},
+		{6.25, 2.5},
+		{2, 1.4142135623730951},
+	}
+
+	for _, tc := range testCases {
+		got, err := calculator.Sqrt(tc.a)
+		if err != nil {
+			t.Fatalf("Wanted no errors for valid inputs, but got: %v", err)
+		}
+		assertOutcome(t, tc.want, got)
+	}
+}
+
+func TestSqrtWithInvalidInputs(t *testing.T) {
+	t.Parallel()
+	testCases := []oneParamTestCase{
+		{-1, 0},
+		{-0.5, 0},
+	}
+
+	for _, tc := range testCases {
+		_, err := calculator.Sqrt(tc.a)
+		if err == nil {
+			t.Fatalf("Wanted an error for invalid inputs, but got: %v", err)
+		}
+	}
+}
+
+// ------------------- Helper functions -------------------------
 func assertOutcome(t *testing.T, want float64, got float64) {
 	const epsilon = 1e-10 // or 0.000,000,000,1
 	if !almostEqual(want, got, epsilon) {
