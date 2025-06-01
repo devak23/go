@@ -6,7 +6,7 @@ import (
 )
 
 // The name of a test function must begin with the word Test, or Go won’t recognise it as a test. It also has to accept
-//a parameter whose type is *testing.T. testing.T is a struct that serves as the core for writing and controlling tests.
+// a parameter whose type is *testing.T. testing.T is a struct that serves as the core for writing and controlling tests.
 
 // Every Go test function must accept exactly one parameter of type *testing.T. This is a requirement of Go to recognize
 // a function as a test. The parameter name t is just a convention. You can name it differently, but t is a convention.
@@ -22,81 +22,60 @@ import (
 // t.Parallel() statement is a standard prelude to tests: it tells Go to run this test concurrently with other tests,
 //which saves time.
 
-func TestAddWithInts(t *testing.T) {
-	t.Parallel()
-	var want float64 = 4
-	got := calculator.Add(2, 2)
-	assertOutcome(t, want, got)
+type testCase struct {
+	a, b float64
+	want float64
 }
 
-func TestAddWithFloats(t *testing.T) {
+func TestAdd(t *testing.T) {
 	t.Parallel()
-	want := 5.0
-	got := calculator.Add(3.0, 2.0)
-	assertOutcome(t, want, got)
+	testCases := []testCase{
+		{2, 2, 4},
+		{-2, -2, -4},
+		{0, 0, 0},
+		{2.5, 2.5, 5},
+		{-2.4, 0.4, -2},
+	}
+
+	for _, tc := range testCases {
+		got := calculator.Add(tc.a, tc.b)
+		assertOutcome(t, tc.want, got)
+	}
 }
 
-func TestAddWithNegativeNumbers(t *testing.T) {
+func TestSubtract(t *testing.T) {
 	t.Parallel()
-	want := -5.0
-	got := calculator.Add(-3.0, -2.0)
-	assertOutcome(t, want, got)
+	testCases := []testCase{
+		{4, 2, 2},
+		{0, 0, 0},
+		{2.5, 2.5, 0},
+		{-2.4, 0.4, -2.8},
+		{2, 4, -2},
+		{4, 2, 2},
+		{0, 0, 0},
+		{-2.5, -2.5, 0},
+		{-2.4, 0.4, -2.8},
+	}
+	for _, tc := range testCases {
+		got := calculator.Subtract(tc.a, tc.b)
+		assertOutcome(t, tc.want, got)
+	}
 }
 
-func TestSubtractWithInts(t *testing.T) {
+func TestMultiply(t *testing.T) {
 	t.Parallel()
-	var want float64 = 2
-	got := calculator.Subtract(4, 2)
-	assertOutcome(t, want, got)
-}
+	testCases := []testCase{
+		{2, 2, 4},
+		{-2, -2, 4},
+		{0, 0, 0},
+		{2.5, 2.5, 6.25},
+		{-2.4, 0.4, -0.96},
+	}
 
-func TestSubtractWithFloats(t *testing.T) {
-	t.Parallel()
-	want := 4.0
-	got := calculator.Subtract(6.0, 2.0)
-	assertOutcome(t, want, got)
-}
-
-func TestSubtractWithNegativeNumbers(t *testing.T) {
-	t.Parallel()
-	want := -4.0
-	got := calculator.Subtract(-6.0, -2.0)
-	assertOutcome(t, want, got)
-}
-
-func TestSubtractWithDecimals(t *testing.T) {
-	t.Parallel()
-	want := 0.25
-	got := calculator.Subtract(1.0, 0.75)
-	assertOutcome(t, want, got)
-}
-
-func TestAddWithDecimals(t *testing.T) {
-	t.Parallel()
-	want := 0.75
-	got := calculator.Add(1.0, -0.25)
-	assertOutcome(t, want, got)
-}
-
-func TestMultiplyWithPositiveNumbers(t *testing.T) {
-	t.Parallel()
-	var want float64 = 25
-	got := calculator.Multiply(5, 5)
-	assertOutcome(t, want, got)
-}
-
-func TestMultiplyWithNegativeNumbers(t *testing.T) {
-	t.Parallel()
-	var want float64 = -30
-	got := calculator.Multiply(5, -6)
-	assertOutcome(t, want, got)
-}
-
-func TestMultiplyTwoNegativeNumbersShouldLeadToPositiveResult(t *testing.T) {
-	t.Parallel()
-	var want float64 = 30
-	got := calculator.Multiply(-5, -6)
-	assertOutcome(t, want, got)
+	for _, tc := range testCases {
+		got := calculator.Multiply(tc.a, tc.b)
+		assertOutcome(t, tc.want, got)
+	}
 }
 
 func assertOutcome(t *testing.T, want float64, got float64) {
