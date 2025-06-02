@@ -1,12 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+)
 
 func main() {
-	greeting := greet(EN)
+	var lang string
+	flag.StringVar(&lang, "lang", "en", "language to greet")
+
+	// Note that the above line could also have been written as:
+	// lang := flag.String("lang", "en", "language to greet")
+	// which creates a pointer and returns to lang where as the line# 10 passes on the pointer to lang that fills it
+	// with data. The & operator is used to get the address of a variable which is very similar to the & operator in C.
+
+	flag.Parse()
+
+	greeting := greet(language(lang))
 	fmt.Println(greeting)
 
-	phGreeting := greetWithPhrasebook(UR)
+	phGreeting := greetWithPhrasebook(language(lang))
 	fmt.Println(phGreeting)
 }
 

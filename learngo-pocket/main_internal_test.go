@@ -28,6 +28,9 @@ func TestGreet_Spanish(t *testing.T) {
 	}
 }
 
+// Structures are Go’s way of aggregating data types together in a meaningful entity. In our case, because the structure
+// represents a test case, we’ll name it testCase. Our structure needs only to be accessible in the TestGreet function
+// (and nowhere else), so let’s define it there:
 type testCase struct {
 	lang language
 	want string
