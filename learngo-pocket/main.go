@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"flag" // import the flag package
 	"fmt"
+	"os"
 )
 
 func main() {
@@ -21,10 +23,27 @@ func main() {
 	// go run main.go -lang=en
 
 	greeting := greet(language(lang))
-	fmt.Println(greeting)
+	fmt.Println("Step 1: With if else condition:", greeting)
 
 	phGreeting := greetWithPhrasebook(language(lang))
-	fmt.Println(phGreeting)
+	fmt.Println("Step 2: With a hardcoded phrase book: ", phGreeting)
+
+	// In the 3rd stage we read a json file which contains a list of languages and their greetings.
+	file, err := os.Open("dictionary.json")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+	// The file will be automatically closed when the function returns.
+	defer file.Close()
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&phrasebook)
+	if err != nil {
+		fmt.Println("Error decoding file:", err)
+		return
+	}
+	phGreeting = greetWithCustomPhraseBook(language(lang), phrasebook)
+	fmt.Println("Step 3: By reading a JSON file: ", phGreeting)
 }
 
 // We define a type language based on String, but Go identifies language and string as different types.
@@ -75,6 +94,14 @@ var phrasebook = map[language]string{
 }
 
 func greetWithPhrasebook(l language) string {
+	greeting, ok := phrasebook[l]
+	if !ok {
+		return fmt.Sprintf("unsupported language %q", l)
+	}
+	return greeting
+}
+
+func greetWithCustomPhraseBook(l language, phrasebook map[language]string) string {
 	greeting, ok := phrasebook[l]
 	if !ok {
 		return fmt.Sprintf("unsupported language %q", l)
