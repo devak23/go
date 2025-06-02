@@ -1,20 +1,24 @@
 package main
 
 import (
-	"flag"
+	"flag" // import the flag package
 	"fmt"
 )
 
 func main() {
+	// The flag package offers two very similar functions to read a string from the command line. The first requires a
+	// pointer to a variable that it will fill up:
+
 	var lang string
 	flag.StringVar(&lang, "lang", "en", "language to greet")
 
-	// Note that the above line could also have been written as:
+	// The second creates the pointer and returns it:
 	// lang := flag.String("lang", "en", "language to greet")
-	// which creates a pointer and returns to lang where as the line# 10 passes on the pointer to lang that fills it
-	// with data. The & operator is used to get the address of a variable which is very similar to the & operator in C.
 
 	flag.Parse()
+	// this scans the input parameters and fills every variable we’ve identified as a receiver. You can run this program
+	// from the command line with the -lang flag:
+	// go run main.go -lang=en
 
 	greeting := greet(language(lang))
 	fmt.Println(greeting)
@@ -30,6 +34,9 @@ type language string
 func (l language) IsValid() bool {
 	return l == EN || l == FR
 }
+
+// The (l language) represents the receiver of the IsValid method. In other words, (l language) is the handle of the type
+// language on which you can invoke the IsValid method.
 
 // you can define constants such as
 const (
