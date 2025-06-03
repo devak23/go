@@ -1,6 +1,6 @@
 package main
 
-import "goprojects/cms"
+import "golearning/src/goprojects/cms"
 import "os"
 
 func main() {

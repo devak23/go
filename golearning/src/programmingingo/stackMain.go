@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"programmingingo/stacker"
+	"golearning/src/programmingingo/stacker"
 )
 
 func main() {

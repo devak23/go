@@ -28,7 +28,13 @@ func loadBookworms(filePath string) ([]Bookworm, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		err := f.Close()
+		if err != nil {
+			fmt.Printf("Error closing file: %v\n", err.Error())
+			return
+		}
+	}(f)
 
 	// Decode the file and store the content int the value bookworms
 	var bookworms []Bookworm
