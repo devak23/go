@@ -45,3 +45,14 @@ func loadBookworms(filePath string) ([]Bookworm, error) {
 	}
 	return bookworms, nil
 }
+
+// booksCount registers all the books and their respective occurrences from the bookworm shelves
+func booksCount(bookworms []Bookworm) map[Book]uint {
+	countByBook := make(map[Book]uint) // create a map {book, count} where key is book and # of books as count
+	for _, bookworm := range bookworms {
+		for _, book := range bookworm.Books {
+			countByBook[book]++
+		}
+	}
+	return countByBook
+}
