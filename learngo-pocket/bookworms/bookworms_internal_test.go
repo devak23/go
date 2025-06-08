@@ -21,6 +21,7 @@ var (
 	theGreatGatsby           = Book{Author: "J.K.Rowling", Title: "The Great Gatsby"}
 	janeEyre                 = Book{Author: "Charlotte Brontë", Title: "Jane Eyre"}
 	theAdventuresOfTomSawyer = Book{Author: "Jane Austen", Title: "The Adventures of Tom Sawyer"}
+	aBriefHistoryOfTime      = Book{Author: "Stephen Hawking", Title: "A Brief History of Time"}
 )
 
 func TestLoadBookworms(t *testing.T) {
@@ -114,6 +115,59 @@ func TestBookCount(t *testing.T) {
 			got := booksCount(tc.input)
 			if !equalBooksCount(t, got, tc.want) {
 				t.Fatalf("Different result! got %v, want %v", got, tc.want)
+			}
+		})
+	}
+}
+
+func TestFindCommonBooks(t *testing.T) {
+	t.Parallel()
+	tt := map[string]struct {
+		input []Bookworm
+		want  []Book
+	}{
+		"no common book": {
+			input: []Bookworm{
+				{Name: "Fadi", Books: []Book{handmaidsTale, theBellJar}},
+				{Name: "Peggy", Books: []Book{orxyAndCrake, animalFarm}},
+			},
+			want: nil,
+		},
+		"more than two common book": {
+			input: []Bookworm{
+				{Name: "Fadi", Books: []Book{handmaidsTale, theBellJar, animalFarm, orxyAndCrake, braveNewWorld, theGreatGatsby}},
+				{Name: "Peggy", Books: []Book{handmaidsTale, animalFarm, janeEyre, theAdventuresOfTomSawyer, theGreatGatsby}},
+			},
+			want: []Book{animalFarm, theGreatGatsby, handmaidsTale},
+		},
+		"everyone has read the same books": {
+			input: []Bookworm{
+				{Name: "Fadi", Books: []Book{aBriefHistoryOfTime, animalFarm}},
+				{Name: "Peggy", Books: []Book{aBriefHistoryOfTime, animalFarm}},
+			},
+			want: []Book{animalFarm, aBriefHistoryOfTime},
+		},
+		"One bookworm has no books": {
+			input: []Bookworm{
+				{Name: "Fadi", Books: []Book{}},
+				{Name: "Peggy", Books: []Book{handmaidsTale, theBellJar}},
+			},
+			want: nil,
+		},
+		"Nobody has any books": {
+			input: []Bookworm{
+				{Name: "Fadi", Books: []Book{}},
+				{Name: "Peggy", Books: []Book{}},
+			},
+			want: nil,
+		},
+	}
+
+	for name, tc := range tt {
+		t.Run(name, func(t *testing.T) {
+			got := findCommonBooks(tc.input)
+			if !equalBooks(t, got, tc.want) {
+				t.Fatalf("Different result! got %v, wanted %v", got, tc.want)
 			}
 		})
 	}
