@@ -1,12 +1,5 @@
 package main
 
-import "fmt"
-
-// Println is a helper function to print the arguments
-func Println(a ...interface{}) {
-	fmt.Println(a...)
-}
-
 // TypeAssertionsDemo demonstrates the usage of type assertions in Go
 func TypeAssertionsDemo() {
 	// In Go, interface{} is a special type that
