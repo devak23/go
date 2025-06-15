@@ -19,5 +19,4 @@ func main() {
 	ReferenceTypesDemo()
 	InterfaceTypesDemo()
 	SwitchDemo()
-	StructDemo()
 }
