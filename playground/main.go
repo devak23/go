@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 // Println is a helper function to print the arguments
 func Println(a ...interface{}) {
@@ -8,9 +11,13 @@ func Println(a ...interface{}) {
 }
 
 func main() {
+	version := runtime.Version()
+	fmt.Printf("Go version: %s\n", version)
 	UsingMapAsSet()
 	UsingRecommendationSystem()
 	TypeAssertionsDemo()
 	ReferenceTypesDemo()
 	InterfaceTypesDemo()
+	SwitchDemo()
+	StructDemo()
 }
