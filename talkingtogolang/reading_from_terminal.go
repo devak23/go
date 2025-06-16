@@ -26,6 +26,6 @@ func ReadFromTerminal() {
  * It's consistent with how most buffered readers work across programming languages
  *
  * But since it reads the delimiter as well, the carriage return and line feed (or just newline) also gets added to the
- * the input. Therefore to remove that extra newline, we use strings.TrimSpace() to trim the whitespace from the end
+ * the input. Therefore, to remove that extra newline, we use strings.TrimSpace() to trim the whitespace from the end
  * of the line.
  */
