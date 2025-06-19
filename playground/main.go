@@ -13,6 +13,8 @@ func Println(a ...interface{}) {
 func main() {
 	version := runtime.Version()
 	fmt.Printf("Go version: %s\n", version)
+
+	WeedingDuplicates()
 	UsingMapAsSet()
 	UsingRecommendationSystem()
 	TypeAssertionsDemo()
