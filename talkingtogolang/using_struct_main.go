@@ -14,7 +14,7 @@ func (m Message) String() string {
 	return m.Hello + m.ignored
 }
 
-func StructDemo() {
+func UsingStructMain() {
 	message := Message{Hello: "Hello World!", ignored: "ignored"}
 	fmt.Printf("Message: %s\n", message.Hello)
 	fmt.Printf("Mess 1: %s\n", message)

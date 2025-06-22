@@ -51,7 +51,7 @@ func printFlights(flights []Flight) {
 	}
 }
 
-func FlightsDemo() {
+func SortingMain() {
 	var flights []Flight
 
 	mumbaiToBangalore := Flight{Origin: "Mumbai", Destination: "Bangalore", Price: 2342}

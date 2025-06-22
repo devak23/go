@@ -22,7 +22,7 @@ type Employee struct {
 	DepartmentId      int       `json:"department_id"`
 }
 
-func ReadStructFromFile() {
+func ReadStructFromFileMain() {
 	jsonFile, _ := os.Open("./employees.json")
 	defer jsonFile.Close()
 	jsonBytes, _ := ioutil.ReadAll(jsonFile)

@@ -24,7 +24,7 @@ type Hello struct {
 	// you to use different naming conventions or map to existing JSON schemas that don't match your Go field names
 }
 
-func ReadingMarshalledStruct() {
+func MarshallStructMain() {
 	h := Hello{Message: "Hello World"}
 	b, _ := json.Marshal(h)
 	fmt.Println(string(b))

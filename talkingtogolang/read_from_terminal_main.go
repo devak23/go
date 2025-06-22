@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func ReadFromTerminal() {
+func ReadFromTerminalMain() {
 	fmt.Println("Reading from a terminal ...")
 	fmt.Print("What is your name? - ")
 	reader := bufio.NewReader(os.Stdin)

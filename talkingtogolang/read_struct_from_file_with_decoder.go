@@ -17,7 +17,7 @@ type AnotherEmployee struct {
 	HireDate   time.Time `json:"hire_date"`
 }
 
-func ReadStructFromFileWithDecoder() {
+func ReadStructFromFileWithDecoderMain() {
 	jsonFile, err := os.Open("employees.json")
 	defer jsonFile.Close()
 	if err != nil {

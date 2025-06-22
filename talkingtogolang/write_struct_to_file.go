@@ -16,7 +16,7 @@ type MyEmployee struct {
 	MonthlySalary              []Salary
 }
 
-func MarshallingStructIntoFile() {
+func WriteStructIntoFileMain() {
 	data := MyEmployee{
 		FirstName: "Steven",
 		LastName:  "King",

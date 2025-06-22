@@ -1,14 +1,24 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
-	DeferingDemo()
-	FlightsDemo()
+	DeferringMain()
+	SortingMain()
 	TypesAgainDemo()
-	ReadStructFromFileWithDecoder()
-	ReadStructFromFile()
-	MarshallingStructIntoFile()
-	ReadingMarshalledStruct()
-	StructDemo()
-	ReadFromFile()
-	ReadFromTerminal()
+	ReadStructFromFileWithDecoderMain()
+	ReadStructFromFileMain()
+	WriteStructIntoFileMain()
+	MarshallStructMain()
+	UsingStructMain()
+	ReadFromFileMain()
+	//ReadFromTerminalMain()
+	programName, questions := os.Args[0], os.Args[1:]
+	fmt.Println("ProgramName, questions = ", programName, questions)
+	LoadingEnvMain()
+	GoRoutineMain()
+	GoChannelMain()
 }

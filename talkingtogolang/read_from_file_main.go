@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func ReadFromFile() {
+func ReadFromFileMain() {
 	fmt.Println("Reading from a file...")
 	file, _ := os.OpenFile("./hello.txt", os.O_RDONLY, 0644)
 	defer file.Close()

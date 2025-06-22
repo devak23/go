@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func DeferingDemo() {
+func DeferringMain() {
 	printDeferring()
 	deferringFunctions()
 }
