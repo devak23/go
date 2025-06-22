@@ -1,3 +1,5 @@
+github.com/DylanMeeus/hasgo/types v0.0.0-20190927174927-88a14c2b81f9 h1:5LkAy3JLCgusoBlyMWTZt+WWVrbRNDkaac7TK3gMieU=
+github.com/DylanMeeus/hasgo/types v0.0.0-20190927174927-88a14c2b81f9/go.mod h1:P0jbBiMGpKS6NnhmaQAbua54O5bnRVLOFQPP+1wx6NE=
 github.com/samber/lo v1.51.0 h1:kysRYLbHy/MB7kQZf5DSN50JHmMsNEdeY24VzJFu7wI=
 github.com/samber/lo v1.51.0/go.mod h1:4+MXEGsJzbKGaUEQFKBq2xtfuznW9oz/WrgyzMzRoM0=
 golang.org/x/text v0.22.0 h1:bofq7m3/HAFvbF51jz3Q9wLg3jkvSPuiZu/pD1XwgtM=
