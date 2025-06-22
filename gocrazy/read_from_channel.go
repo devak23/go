@@ -7,7 +7,7 @@ import (
 )
 
 func ReadFromChannelMain() {
-	log.Println("--- Reading from a channel ---")
+	log.Println("--- ReadFromChannelMain: Demo of reading from a channel ---")
 	c := make(chan int) // create an unbuffered integer channel
 	go PrintNumbersToChannel(c)
 	time.Sleep(2 * time.Second)

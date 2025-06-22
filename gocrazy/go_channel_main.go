@@ -11,6 +11,7 @@ import (
 // The following program shows how the data is sent to a channel and how it is read from it
 
 func GoChannelMain() {
+	log.Println("------------ GoChannelMain: Demo of channel creation -------------------")
 	log.Println("Creating a channel")
 	c := make(chan int)
 	log.Println("Writing numbers into the channel in a go routine")

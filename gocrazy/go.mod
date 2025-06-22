@@ -1,4 +1,4 @@
-module talkingtogolang
+module gocrazy
 
 go 1.24
 
