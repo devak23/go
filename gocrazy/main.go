@@ -24,4 +24,5 @@ func main() {
 	GoChannelMain()
 	ReadFromChannelMain()
 	ReadFromBufferedChannelMain()
+	WorkingWithDiffSourcesMain()
 }
