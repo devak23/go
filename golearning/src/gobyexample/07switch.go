@@ -35,10 +35,8 @@ func SwitchMain() {
 		fmt.Println("It's after noon")
 	}
 
-	// a type switch compares types and not values
-	// you can use this to discover the type of an
-	// interface value. In this case, the variable t
-	// will have the type corresponding to its value
+	// a type switch compares types and not values you can use this to discover the type of an interface value. In this
+	// case, the variable t will have the type corresponding to its value
 	whatAmI := func(i interface{}) {
 		switch t := i.(type) {
 		case bool:

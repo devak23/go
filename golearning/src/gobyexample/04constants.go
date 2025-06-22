@@ -14,7 +14,7 @@ func ConstantsMain() {
 	fmt.Println(d)
 
 	// a numeric constant has no type until it's given one such by an
-	// explitcit cast
+	// explicit cast
 	fmt.Println(int64(d))
 
 	// a number can be given a type by using it in a context, for
