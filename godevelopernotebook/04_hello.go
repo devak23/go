@@ -1,8 +1,8 @@
 package main
 
-import "fmt"
+import . "fmt"
 
-const Hello, World = "Hello", "World"
+const Hello, World = "Hello", "World!"
 
 func main() {
 	Println(Hello, World)
