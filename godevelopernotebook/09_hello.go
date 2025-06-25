@@ -11,7 +11,10 @@ func (h HelloWorld) String() string {
 	return "Hello World!"
 }
 
-// Message - is another struct being defined which contains an anonymous field of type HelloWorld
+// Message - is another struct being defined which contains an anonymous field of type HelloWorld. This is called type
+// embedding using an anonymous field. Go’s design has upset quite a few people with an inheritance-based view of object
+// orientation because it lacks inheritance, however thanks to type embedding we’re able to compose types which act as
+// proxies to the methods provided by anonymous fields
 type Message struct {
 	HelloWorld
 }
