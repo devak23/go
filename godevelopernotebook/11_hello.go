@@ -13,6 +13,7 @@ type Message struct {
 	World string
 }
 
+// String returns a named value "r"
 func (v Message) String() (r string) {
 	if v.Hello == nil {
 		r = v.World
