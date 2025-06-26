@@ -21,4 +21,5 @@ func main() {
 	ReferenceTypesDemo()
 	InterfaceTypesDemo()
 	SwitchDemo()
+	RotaMain()
 }
