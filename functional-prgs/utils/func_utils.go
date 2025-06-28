@@ -1,5 +1,10 @@
 package utils
 
+import (
+	"os"
+	"strconv"
+)
+
 // Scalar is a type constraint that allows any numeric type. The ~ operator allows types that have the specified
 // underlying type (e.g., custom types based on int). The | operator is used to combine multiple types. This constraint
 // enables generic functions to accept any integer or floating-point type, including user-defined types with those
@@ -12,4 +17,13 @@ type Scalar interface {
 
 func AddScalar[T Scalar](x, y T) T {
 	return x + y
+}
+
+func Add(a, b int) int {
+	return a + b
+}
+
+func Arg(n int) (r int) {
+	r, _ = strconv.Atoi(os.Args[n+1])
+	return
 }
