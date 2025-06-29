@@ -1,11 +1,14 @@
 package main
 
-import . "fmt"
+import (
+	. "fmt"
+	"github.com/devak23/go/functional-prgs/utils"
+)
 
-type predicate func(int) bool
+type predicate[T utils.Scalar] func(T) bool
 
-func filter(slice []int, condition predicate) []int {
-	var result []int
+func filter[T utils.Scalar](slice []T, condition predicate[T]) []T {
+	var result []T
 
 	for _, value := range slice {
 		if condition(value) {
@@ -16,8 +19,7 @@ func filter(slice []int, condition predicate) []int {
 }
 
 func main() {
-	// Example usage of filter function with a predicate
-	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	numbers := []int{11, 2, 3, 41, 5, 6, 7, 18, 9, 10}
 	evenNumbers := filter(numbers, isEven)
 	Printf("Even numbers: %v", evenNumbers)
 
