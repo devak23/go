@@ -10,7 +10,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"os"
 	"time"
 )
 
@@ -41,7 +40,12 @@ func NewDecoder(r io.Reader) *Decoder {
 // UnmarshalRide is the custom function that we wanted to build to encapsulate the decoding logic. It returns a Ride
 // from serialized data. Here we need to convert a []byte to an io.Reader. This is where bytes.NewReader comes in handy.
 func UnmarshalRide(data []byte, ride *Ride) error {
-	r := bytes.NewReader(data)
+	var r io.Reader
+	r = bytes.NewReader(data)
+	// bytes.NewReader and its cousins strings.NewReader, bytes.Buffer, and others create in-memory io.Reader and
+	// io.Writer around concrete types. They’re helpful when dealing with APIs that only work with io.Reader
+	// (such as encoding/gob).
+
 	return NewDecoder(r).DecodeRide(ride)
 }
 
@@ -79,11 +83,27 @@ func main() {
 	// one-off decoding tasks. The custom wrapper (Decoder) is only worth it if you want to add more custom decode logic,
 	// helper methods, or enforce an interface.
 
-	// if we were to read a file consisting of all such rides, we could use the Decoder struct to read each ride:
-	file, err := os.OpenFile("rides.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
-	defer file.Close()
-	if err != nil {
-		panic(err)
-	}
-
 }
+
+// The example is demonstrating a Bridge Pattern - how to adapt between different data formats when you have existing
+// code that expects one interface (io.Reader/io.Writer) but your new requirements need different format (like []byte).
+
+// The Bridge Pattern is a structural design pattern that separates an interface from its implementation, allowing you to
+// change the implementation without affecting the interface. In this case, the interface is the io.Reader/io.Writer,
+// and the implementation is the custom Decoder that reads JSON data from a byte slice. By using the Bridge Pattern, you can
+// easily switch between different data formats (like JSON, XML, etc.) without changing the existing code that works with
+// io.Reader/io.Writer. This makes your code more flexible and maintainable, as you can add new data formats or change the
+// existing ones without affecting the rest of your codebase.
+
+// The author makes it clear that existing backend code works with io.Reader and io.Writer (streaming interfaces) and
+// that the new requirement requires us to use shared memory which works with []byte (byte slices) and that we are required
+// to reuse the existing code.
+
+// The program shows how bytes.NewReader acts as an adapter converting a byte slice into an io.Reader, allowing us to
+// reuse the streaming-based code (the Decoder struct that expects an io.Reader), work with byte slices and bridge the gap
+// between the two formats.
+
+// Thus the author is teaching us that bytes.NewReader and similar functions are valuable adaptation tools when you need to:
+// 1. Integrate different parts of a system that expects different formats
+// 2. Avoid rewriting existing code
+// 3. Maintain a clean interfaces while adapting to the new requirements
