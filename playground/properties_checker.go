@@ -3,16 +3,15 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io/fs"
 	"os"
-	"path/filepath"
 	"strings"
 )
 
-func PropertiesComparator() {
-	root := "/path/to/your/properties/files"
-
-}
+//
+//func PropertiesComparator() {
+//	root := "/path/to/your/properties/files"
+//
+//}
 
 func ParserProperties(file string) (map[string]string, error) {
 	props := make(map[string]string)
