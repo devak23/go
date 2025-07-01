@@ -46,6 +46,17 @@ func main() {
 	for _, np := range namedPredicates {
 		Printf("Numbers that satisfy predicate %s: %v\n", np.name, filter(numbers, np.fn))
 	}
+
+	cc := ConstraintChecker[int]{
+		largerThan:  createLargerThanPredicate(5),
+		smallerThan: createSmallerThanPredicate(20),
+	}
+	Printf("\nConstraint checker: %v", cc.check(10))
+	result1 := cc.check(10) // true, because 10 > 5 and 10 < 20
+	result2 := cc.check(4)  // false, because 4 is not > 5
+	result3 := cc.check(25) // false, because 25 is not < 20
+
+	Printf("\nresult1: %v, result2: %v, result3: %v\n", result1, result2, result3)
 }
 
 type namedPredicate[T utils.Scalar] struct {
@@ -60,6 +71,12 @@ func createSmallerThanPredicate[T utils.Scalar](threshold T) predicate[T] {
 	}
 }
 
+func createLargerThanPredicate[T utils.Scalar](threshold T) predicate[T] {
+	return func(t T) bool {
+		return t > threshold
+	}
+}
+
 func isEven(n int) bool {
 	return n%2 == 0
 }
@@ -70,4 +87,13 @@ func isLargerThanFive(n int) bool {
 
 func isOdd(n int) bool {
 	return n%2 != 0
+}
+
+type ConstraintChecker[T utils.Scalar] struct {
+	largerThan  predicate[T]
+	smallerThan predicate[T]
+}
+
+func (cc *ConstraintChecker[T]) check(t T) bool {
+	return cc.largerThan(t) && cc.smallerThan(t)
 }
