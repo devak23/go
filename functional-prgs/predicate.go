@@ -28,6 +28,36 @@ func main() {
 
 	oddNumbers := filter(numbers, isOdd)
 	Printf("\nOdd numbers: %v\n", oddNumbers)
+
+	smallerThanFive := func(i int) bool { return i < 5 } // inline function
+	Printf("Numbers smaller than five: %v\n", filter(numbers, smallerThanFive))
+
+	Printf("Numbers greater than 20: %v\n", filter(numbers, func(i int) bool { return i > 20 }))
+
+	Printf("Numbers smaller than 20: %v\n", filter(numbers, createSmallerThanPredicate(20)))
+
+	// --------------------- Slices of predicates ---------------------
+	Println("\n\nUsing named predicates: ----------------------")
+	namedPredicates := []namedPredicate[int]{
+		{"isEven", isEven},
+		{"isLargerThanFive", isLargerThanFive},
+		{"isOdd", isOdd},
+	}
+	for _, np := range namedPredicates {
+		Printf("Numbers that satisfy predicate %s: %v\n", np.name, filter(numbers, np.fn))
+	}
+}
+
+type namedPredicate[T utils.Scalar] struct {
+	name string
+	fn   predicate[T]
+}
+
+// createLargerThanPredicate is a function that creates a predicate.
+func createSmallerThanPredicate[T utils.Scalar](threshold T) predicate[T] {
+	return func(n T) bool {
+		return n < threshold
+	}
 }
 
 func isEven(n int) bool {
