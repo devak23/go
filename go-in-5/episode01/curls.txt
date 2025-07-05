@@ -1,0 +1,5 @@
+To get data:
+curl -v -X GET http://localhost:8081/get?key=greeting
+
+To put data:
+curl -v -XPUT -d 'thanks for watching, gophers!' http://localhost:8081/set?key=greeting

@@ -1,4 +1,4 @@
-package episode0
+package episode00
 
 import "errors"
 

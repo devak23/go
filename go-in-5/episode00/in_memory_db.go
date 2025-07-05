@@ -1,4 +1,4 @@
-package episode0
+package episode00
 
 // This program implements a thread-safe in-memory hash table (key-value store) using built-in map with proper
 // concurrency control.
