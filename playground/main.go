@@ -23,4 +23,5 @@ func main() {
 	SwitchDemo()
 	RotaMain()
 	FunWithStringsMain()
+	WordCountMain()
 }
