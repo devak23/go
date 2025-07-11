@@ -189,6 +189,144 @@ func compositionExample() {
 	Println("Pipeline(5) = ", result)
 }
 
+// =========================================================
+// 5. Partial application and currying
+// =========================================================
+
+// PartialAdd - Fix some arguments
+func PartialAdd(x int) func(int) int {
+	return func(y int) int {
+		return x + y
+	}
+}
+
+func CurriedAdd(x int) func(int) func(int) int {
+	return func(y int) func(int) int {
+		return func(z int) int {
+			return x + y + z
+		}
+	}
+}
+
+func Curry2[T, U, V any](fn func(T, U) V) func(T) func(U) V {
+	return func(t T) func(U) V {
+		return func(u U) V {
+			return fn(t, u)
+		}
+	}
+}
+
+func partialAndCurryExample() {
+	Println("\n=== Partial Application and Currying ===")
+	// Partial Application
+	add10 := PartialAdd(10)
+	Println("add10(12) = ", add10(12))
+
+	// Currying
+	curriedAdd := CurriedAdd(1)
+	addWith1And2 := curriedAdd(2)
+	result := addWith1And2(3)
+	Println("CurriedAdd(1)(2)(3) = ", result)
+
+	// Generic currying
+	curriedMultiply := Curry2(multiply)
+	multiplyBy3 := curriedMultiply(3)
+	Println("multiplyBy3(4) = ", multiplyBy3(4))
+}
+
+// =========================================================
+// 6. Monadic Patterns - Optional/Maybe type
+// =========================================================
+
+// Optional type to handle nil values functionality
+type Optional[T any] struct {
+	value *T
+}
+
+func Some[T any](value T) Optional[T] {
+	return Optional[T]{value: &value}
+}
+
+func None[T any]() Optional[T] {
+	return Optional[T]{value: nil}
+}
+
+func (o Optional[T]) IsSome() bool {
+	return o.value != nil
+}
+
+func (o Optional[T]) IsNone() bool {
+	return o.value == nil
+}
+
+func (o Optional[T]) Unwrap() T {
+	if o.value == nil {
+		panic("Cannot unwrap None")
+	}
+	return *o.value
+}
+
+func (o Optional[T]) UnwrapOr(defaultValue T) T {
+	if o.value == nil {
+		return defaultValue
+	}
+	return *o.value
+}
+
+// Map over Optional (functor)
+func (o Optional[T]) Map(fn func(T) T) Optional[T] {
+	if o.value == nil {
+		return None[T]()
+	}
+	result := fn(*o.value)
+	return Some(result)
+}
+
+// FlatMap for Optional (monad)
+func (o Optional[T]) FlatMap(fn func(T) Optional[T]) Optional[T] {
+	if o.value == nil {
+		return None[T]()
+	}
+	return fn(*o.value)
+}
+
+// Safe division that returns Optional
+func safeDivide(a, b int) Optional[int] {
+	if b == 0 {
+		return None[int]()
+	} else {
+		return Some(a / b)
+	}
+}
+
+func monadicExamples() {
+	Println("\n=== Monadic Patterns (Optional) ===")
+
+	// Basic Optional use
+	some := Some(42)
+	none := None[int]()
+	Println("Some(42) = ", some.UnwrapOr(0))
+	Println("None = ", none.UnwrapOr(0))
+
+	// Map over Optional
+	doubled := some.Map(func(x int) int { return x * 2 })
+	Println("Some(42) mapped with * 2 = ", doubled.UnwrapOr(0))
+
+	// Chaining operations with Flatmap
+	result := Some(10).FlatMap(func(x int) Optional[int] {
+		return safeDivide(x, 2)
+	}).Map(func(x int) int {
+		return x + 1
+	})
+	Println("Some(10) -> safeDivide(2) -> add(1) = ", result.UnwrapOr(0))
+
+	// Safe division chain
+	divResult := Some(100).
+		FlatMap(func(x int) Optional[int] { return safeDivide(x, 10) }).
+		FlatMap(func(x int) Optional[int] { return safeDivide(x, 2) })
+	Println("100 / 10 / 2 = ", divResult.UnwrapOr(0))
+}
+
 func main() {
 	Println("FUNCTIONAL PROGRAMMING IN GO - EXAMPLES")
 	Println("========================================")
@@ -196,4 +334,7 @@ func main() {
 	higherOrderFunctionsExample()
 	functionalCollectionExample()
 	compositionExample()
+	partialAndCurryExample()
+	monadicExamples()
+	complexFunctionalExample()
 }
