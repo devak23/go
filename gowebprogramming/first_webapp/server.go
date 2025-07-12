@@ -6,6 +6,10 @@ import (
 )
 
 func handler(writer http.ResponseWriter, request *http.Request) {
+	if request.URL.Path == "/favicon.ico" {
+		return
+	}
+
 	bytes, err := fmt.Fprintf(writer, "Hello %s!", request.URL.Path[1:])
 	fmt.Printf("Request for path: %s\n", request.URL.Path)
 	fmt.Println("# of bytes written: ", bytes)
