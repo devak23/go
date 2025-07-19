@@ -21,6 +21,7 @@ func portWorker(ports, results chan int) {
 		fmt.Println("trying ", address)
 		conn, err := net.Dial("tcp", address)
 		if err != nil {
+			fmt.Println(err)
 			results <- 0
 			continue
 		}
@@ -30,18 +31,18 @@ func portWorker(ports, results chan int) {
 }
 
 func main() {
-	ports := make(chan int, 100)
-	results := make(chan int) // create a separate channel to communicate the results from the worker to the main thread
-	var openPorts []int       // to store the results so we can sort them later
+	ports := make(chan int, 100) // Creates a buffered channel that can hold up to 100 values internally before blocking
+	results := make(chan int)    // create a separate unbuffered channel to communicate the results from the worker to the main thread
+	var openPorts []int          // to store the results so we can sort them later
 
-	for i := 0; i <= cap(ports); i++ {
+	for i := 0; i < cap(ports); i++ {
 		go portWorker(ports, results)
 	}
 
 	// Start feeding the ports into the ports channel. We need to send to the workers in a separate goroutine because
 	// the result-gathering loop needs to start before more than 100 items of work can continue.
 	go func() {
-		for i := 0; i <= 1024; i++ {
+		for i := 0; i < 1024; i++ {
 			ports <- i
 		}
 	}()
